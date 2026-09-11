@@ -1,0 +1,52 @@
+ACCESS ANU - COMPLETE OFFLINE PROJECT
+===================================
+
+WINDOWS
+1. Right-click the ZIP and choose Extract All.
+2. Open the extracted Access-ANU folder.
+3. Double-click START-WINDOWS.cmd.
+4. The map opens in your browser. Keep the terminal window open while using it.
+
+Requires Python 3 or Node.js to already be installed. The launcher tries Python
+first, then Node.js. There are no pip/npm dependencies to install. If neither
+runtime is installed, install one before taking the computer offline.
+
+MANUAL START (ANY OS)
+From this folder, use one of:
+  python serve.py
+  python3 serve.py
+  py -3 serve.py
+  node serve.mjs
+
+Open the address printed in the terminal if the browser does not open itself.
+Press Ctrl+C in the terminal to stop the server.
+
+Do not double-click dist/index.html: browser module and worker restrictions
+require the included local HTTP server. It runs entirely on your computer and
+binds only to 127.0.0.1; this does not upload or publish the project.
+
+WHAT IS INCLUDED
+- Complete editable HTML, CSS and JavaScript source under dist/.
+- Both floor maps, columns, doors, stairwell voids and floor connections.
+- Shortest-path / wall-clearance A* routing and the background worker.
+- 3D, top and two-floor views; lift-only and stair-only options.
+- Python and Node.js offline launchers (standard libraries only).
+- Routing verification tests: run node verify.mjs (Node.js required for tests).
+- Original floor-plan reference images and the aligned Level Two reference.
+- TECHNICAL-README.md explains file structure, algorithms and assumptions.
+
+OFFLINE BEHAVIOUR
+All map rendering and routing happen locally. No API keys, sign-in, remote
+assets or internet connection are needed after extracting this package and
+having Python or Node.js installed. Live GPS, Wi-Fi positioning, Google Maps
+and AI mapping are not implemented in this prototype.
+
+ACCURACY
+The geometry and stair connections are inferred from the supplied diagrams,
+not a measured building survey. Units are illustrative, not metres. Verify
+room access, dimensions and stair landings before real navigation use.
+
+SOURCE SNAPSHOT
+Two-floor website revision: 33a5899314d4418d5746bbe337d71f08af5b25b0
+The application source matches the published two-floor project. Only offline
+launchers, instructions and reference images have been added to this export.
