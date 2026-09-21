@@ -1,0 +1,36 @@
+{
+  "nodes": [
+    { "id": "R101", "name": "Room 101", "x": 0,  "y": 0,  "floor": 1, "type": "room" },
+    { "id": "R102", "name": "Room 102", "x": 10, "y": 0,  "floor": 1, "type": "room" },
+    { "id": "R103", "name": "Room 103", "x": 20, "y": 0,  "floor": 1, "type": "room" },
+    { "id": "R104", "name": "Room 104", "x": 20, "y": 10, "floor": 1, "type": "room" },
+    { "id": "CORR-A", "name": "Corridor A", "x": 10, "y": 5, "floor": 1, "type": "corridor" },
+    { "id": "CORR-B", "name": "Corridor B", "x": 15, "y": 5, "floor": 1, "type": "corridor" },
+    { "id": "LIFT-1", "name": "Lift 1",    "x": 5,  "y": 10, "floor": 1, "type": "lift" },
+    { "id": "STAIRS-1", "name": "Stairwell 1", "x": 25, "y": 5, "floor": 1, "type": "stair" },
+    { "id": "R201", "name": "Room 201", "x": 0,  "y": 0,  "floor": 2, "type": "room" },
+    { "id": "R202", "name": "Room 202", "x": 10, "y": 0,  "floor": 2, "type": "room" },
+    { "id": "R203", "name": "Room 203", "x": 20, "y": 0,  "floor": 2, "type": "room" },
+    { "id": "R204", "name": "Room 204", "x": 20, "y": 10, "floor": 2, "type": "room" },
+    { "id": "CORR-C", "name": "Corridor C", "x": 10, "y": 5, "floor": 2, "type": "corridor" },
+    { "id": "LIFT-2", "name": "Lift 2 (F2)", "x": 5, "y": 10, "floor": 2, "type": "lift" },
+    { "id": "STAIRS-2", "name": "Stairwell 2 (F2)", "x": 25, "y": 5, "floor": 2, "type": "stair" }
+  ],
+  "edges": [
+    { "from": "R101",    "to": "CORR-A",  "weight": 8,  "accessible": true,  "type": "door" },
+    { "from": "R102",    "to": "CORR-A",  "weight": 5,  "accessible": true,  "type": "door" },
+    { "from": "R103",    "to": "CORR-B",  "weight": 6,  "accessible": true,  "type": "door" },
+    { "from": "R104",    "to": "CORR-B",  "weight": 4,  "accessible": true,  "type": "door" },
+    { "from": "CORR-A",  "to": "CORR-B",  "weight": 7,  "accessible": true,  "type": "passage" },
+    { "from": "CORR-A",  "to": "LIFT-1",  "weight": 6,  "accessible": true,  "type": "door" },
+    { "from": "CORR-B",  "to": "STAIRS-1","weight": 5,  "accessible": false, "type": "stairs" },
+    { "from": "LIFT-1",  "to": "LIFT-2",  "weight": 10, "accessible": true,  "type": "lift" },
+    { "from": "STAIRS-1","to": "STAIRS-2","weight": 6,  "accessible": false, "type": "stairs" },
+    { "from": "R201",    "to": "CORR-C",  "weight": 8,  "accessible": true,  "type": "door" },
+    { "from": "R202",    "to": "CORR-C",  "weight": 5,  "accessible": true,  "type": "door" },
+    { "from": "R203",    "to": "CORR-C",  "weight": 9,  "accessible": true,  "type": "door" },
+    { "from": "R204",    "to": "CORR-C",  "weight": 4,  "accessible": true,  "type": "door" },
+    { "from": "CORR-C",  "to": "LIFT-2",  "weight": 6,  "accessible": true,  "type": "door" },
+    { "from": "CORR-C",  "to": "STAIRS-2","weight": 5,  "accessible": false, "type": "stairs" }
+  ]
+}

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Building Scan 3D</title>
+  <style>
+    :root { --ink: #172026; --paper: #e9e5dc; --panel: rgba(255,253,248,.9); --teal: #087f8c; --coral: #d85d48; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow: hidden; color: var(--ink); background: var(--paper); font: 14px/1.4 Georgia, serif; }
+    #scene { position: fixed; inset: 0; }
+    .panel { position: fixed; top: 22px; left: 22px; width: 270px; padding: 20px; background: var(--panel); border: 1px solid #d3cbbd; box-shadow: 0 16px 35px rgba(40,35,25,.15); }
+    h1 { margin: 0 0 5px; font-size: 1.7rem; font-weight: 500; }
+    p { margin: 0 0 17px; color: #65747c; }
+    label { display: block; margin: 12px 0 5px; color: #65747c; font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; }
+    select, button { width: 100%; padding: 9px 10px; border: 1px solid #cfc6b6; background: white; color: var(--ink); font: inherit; }
+    button { margin-top: 10px; cursor: pointer; border-color: var(--ink); }
+    .status { margin-top: 16px; color: #65747c; font: 12px ui-monospace, monospace; }
+    .hint { position: fixed; right: 22px; bottom: 18px; padding: 8px 10px; background: rgba(255,253,248,.8); color: #65747c; font: 12px ui-monospace, monospace; }
+    .stats-box { position: fixed; left: 22px; bottom: 18px; width: 320px; max-height: 46vh; overflow: auto; padding: 14px 16px; background: rgba(23,32,38,.93); color: #d6e4dd; font: 12px/1.6 ui-monospace, monospace; border: 1px solid #37464c; box-shadow: 0 16px 35px rgba(0,0,0,.25); }
+    .stats-box h2 { margin: 0 0 10px; font: 600 11px/1 ui-monospace, monospace; color: #9fd8c9; text-transform: uppercase; letter-spacing: .08em; }
+    .stats-box p { margin: 0; color: #8fa39d; }
+    .stats-box dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 0; }
+    .stats-box dt { color: #8fa39d; }
+    .stats-box dd { margin: 0; text-align: right; color: #fffdf8; word-break: break-word; }
+    .legend { position: fixed; top: 22px; right: 22px; padding: 12px 16px; background: var(--panel); border: 1px solid #d3cbbd; box-shadow: 0 16px 35px rgba(40,35,25,.15); font: 12px/1.4 ui-monospace, monospace; color: var(--ink); }
+    .legend h2 { margin: 0 0 8px; font: 600 11px/1 ui-monospace, monospace; color: #65747c; text-transform: uppercase; letter-spacing: .08em; }
+    .legend .row { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+    .legend .row + .row { }
+    .legend i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex: none; }
+    .legend .line { width: 16px; height: 3px; border-radius: 2px; display: inline-block; flex: none; }
+    .node-label { position: fixed; transform: translate(-50%, -130%); pointer-events: none; padding: 1px 6px; background: rgba(255,253,248,.88); border: 1px solid #d3cbbd; font: 11px/1.4 ui-monospace, monospace; white-space: nowrap; z-index: 5; }
+  </style>
+</head>
+<body>
+  <div id="scene"></div>
+  <aside class="panel">
+    <h1>Building scan / 3D</h1>
+    <p>Orbit the STL mesh and inspect the graph extracted from it.</p>
+    <label for="floor">Floor visibility</label>
+    <select id="floor"><option value="all">All floors</option><option value="1">Floor 1</option><option value="2">Floor 2</option></select>
+    <label for="start">Route start</label>
+    <select id="start"></select>
+    <label for="goal">Route destination</label>
+    <select id="goal"></select>
+    <button id="route">Show A* route</button>
+    <button id="reset">Reset camera</button>
+    <div class="status" id="status">Loading STL scan…</div>
+  </aside>
+  <div class="hint">drag orbit · wheel zoom · right-drag pan</div>
+  <div class="stats-box">
+    <h2>A* diagnostics</h2>
+    <div id="stats-body"><p>Pick a start/destination and press "Show A* route".</p></div>
+  </div>
+  <div class="legend">
+    <h2>What's what</h2>
+    <div class="row"><i style="background:#087f8c"></i> Room</div>
+    <div class="row"><i style="background:#d49a28"></i> Corridor waypoint</div>
+    <div class="row"><i style="background:#3c7aaf"></i> Lift</div>
+    <div class="row"><i style="background:#d85d48"></i> Stair</div>
+    <div class="row"><span class="line" style="background:#d85d48"></span> A* route</div>
+  </div>
+  <script src="pathfinding.js"></script>
+  <script type="importmap">
+    { "imports": { "three": "https://unpkg.com/three@0.169.0/build/three.module.js" } }
+  </script>
+  <script type="module">
+    import * as THREE from 'https://unpkg.com/three@0.169.0/build/three.module.js';
+    import { OrbitControls } from 'https://unpkg.com/three@0.169.0/examples/jsm/controls/OrbitControls.js';
+    import { STLLoader } from 'https://unpkg.com/three@0.169.0/examples/jsm/loaders/STLLoader.js';
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xe9e5dc);
+    const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, .1, 500);
+    camera.position.set(56, 34, 28);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); renderer.setSize(innerWidth, innerHeight); renderer.shadowMap.enabled = true;
+    document.getElementById('scene').appendChild(renderer.domElement);
+    const controls = new OrbitControls(camera, renderer.domElement); controls.target.set(28, 3, -16); controls.enableDamping = true;
+    scene.add(new THREE.HemisphereLight(0xfff9e8, 0x59666b, 2.2));
+    const sun = new THREE.DirectionalLight(0xffffff, 3); sun.position.set(28, 45, -2); scene.add(sun);
+    const grid = new THREE.GridHelper(64, 32, 0x8e9895, 0xc7c3b9); grid.position.set(28, 0, -16); scene.add(grid);
+    const model = new THREE.Group(); const nodesGroup = new THREE.Group(); const routeGroup = new THREE.Group(); scene.add(model, nodesGroup, routeGroup);
+    model.rotation.x = -Math.PI / 2;
+    const nodeMap = {}, labelMap = {};
+    let graph, floorMeshes = {};
+    const start = document.getElementById('start');
+    const goal = document.getElementById('goal');
+
+    // Split the single STL mesh into one sub-mesh per floor (grouped by each
+    // triangle's average Z, since floor boxes never straddle a floor boundary)
+    // so a floor can be hidden entirely instead of just dimming its markers.
+    function splitByFloor(geometry) {
+      const pos = geometry.attributes.position;
+      const byFloor = { 1: [], 2: [] };
+      for (let i = 0; i < pos.count; i += 3) {
+        const avgZ = (pos.getZ(i) + pos.getZ(i + 1) + pos.getZ(i + 2)) / 3;
+        const floor = avgZ < 3 ? 1 : 2; // floor 1 boxes sit z 0-2.5, floor 2 boxes sit z 4-6.5
+        for (let v = 0; v < 3; v++) byFloor[floor].push(pos.getX(i + v), pos.getY(i + v), pos.getZ(i + v));
+      }
+      return Object.fromEntries(Object.entries(byFloor).map(([floor, vertices]) => {
+        const geo = new THREE.BufferGeometry();
+        geo.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+        geo.computeVertexNormals();
+        return [floor, geo];
+      }));
+    }
+
+    async function load() {
+      graph = await fetch('graph-from-stl.json').then(response => response.json());
+      Pathfinding.setGraphData(graph);
+      const loader = new STLLoader();
+      const geometry = await new Promise((resolve, reject) => loader.load('building-demo.stl', resolve, undefined, reject));
+      const material = new THREE.MeshStandardMaterial({ color: 0xaabfba, roughness: .72, metalness: .05, transparent: true, opacity: .78, flatShading: true });
+      const floorGeometries = splitByFloor(geometry);
+      floorMeshes = Object.fromEntries(Object.entries(floorGeometries).map(([floor, geo]) => [floor, new THREE.Mesh(geo, material)]));
+      model.add(...Object.values(floorMeshes));
+      const nodeMaterial = { room: 0x087f8c, corridor: 0xd49a28, lift: 0x3c7aaf, stair: 0xd85d48 };
+      const nodeHex = { room: '#087f8c', corridor: '#d49a28', lift: '#3c7aaf', stair: '#d85d48' };
+      for (const node of graph.nodes) {
+        const marker = new THREE.Mesh(new THREE.SphereGeometry(.65, 16, 10), new THREE.MeshStandardMaterial({ color: nodeMaterial[node.type] }));
+        marker.position.set(node.x, node.z + 1.2, -node.y); marker.userData.floor = node.floor; marker.userData.id = node.id; nodesGroup.add(marker); nodeMap[node.id] = marker;
+        const label = document.createElement('div');
+        label.className = 'node-label'; label.textContent = node.id; label.style.color = nodeHex[node.type]; label.style.borderColor = nodeHex[node.type];
+        document.body.appendChild(label); labelMap[node.id] = label;
+      }
+      for (const node of graph.nodes) { start.add(new Option(node.name + ' (' + node.id + ')', node.id)); goal.add(new Option(node.name + ' (' + node.id + ')', node.id)); }
+      start.value = 'R101'; goal.value = 'R204'; setStatus('STL loaded · ' + graph.nodes.length + ' graph nodes'); updateVisibility();
+    }
+    function setStatus(text) { document.getElementById('status').textContent = text; }
+    function updateVisibility() {
+      const floor = document.getElementById('floor').value;
+      nodesGroup.children.forEach(marker => marker.visible = floor === 'all' || String(marker.userData.floor) === floor);
+      for (const [floorNum, mesh] of Object.entries(floorMeshes)) mesh.visible = floor === 'all' || floor === floorNum;
+    }
+    function showRoute() {
+      routeGroup.clear();
+      const from = graph.nodes.find(node => node.id === start.value), to = graph.nodes.find(node => node.id === goal.value);
+      const g = Pathfinding.buildGraph(false, true);
+      const t0 = performance.now();
+      const result = Pathfinding.aStar(g, from.id, to.id);
+      const elapsed = performance.now() - t0;
+      const route = result.path.map(id => graph.nodes.find(node => node.id === id));
+      const points = route.map(node => new THREE.Vector3(node.x, node.z + 1.2, -node.y));
+      routeGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(points), new THREE.LineBasicMaterial({ color: 0xd85d48, linewidth: 4 })));
+      setStatus(route.length ? 'A* route · ' + route.map(node => node.id).join(' → ') + ' · cost ' + result.cost.toFixed(2) : 'No route found');
+      renderStats({ from, to, result, route, elapsed });
+    }
+    function renderStats({ from, to, result, route, elapsed }) {
+      const body = document.getElementById('stats-body');
+      const totalNodes = graph.nodes.length, totalEdges = graph.edges.length;
+      if (!route.length) { body.innerHTML = `<p>No route found between ${from.id} and ${to.id}.</p>`; return; }
+      const efficiency = (result.nodesExplored / totalNodes * 100).toFixed(1);
+      body.innerHTML = `<dl>
+        <dt>Algorithm</dt><dd>A* (Euclidean heuristic)</dd>
+        <dt>From → To</dt><dd>${from.id} → ${to.id}</dd>
+        <dt>Path</dt><dd>${route.map(n => n.id).join(' → ')}</dd>
+        <dt>Path cost</dt><dd>${result.cost.toFixed(2)} m</dd>
+        <dt>Hops</dt><dd>${route.length - 1}</dd>
+        <dt>Nodes explored</dt><dd>${result.nodesExplored} / ${totalNodes}</dd>
+        <dt>Search efficiency</dt><dd>${efficiency}% of graph</dd>
+        <dt>Compute time</dt><dd>${elapsed.toFixed(3)} ms</dd>
+        <dt>Graph size</dt><dd>${totalNodes} nodes · ${totalEdges} edges</dd>
+      </dl>`;
+    }
+    function resetCamera() { camera.position.set(56, 34, 28); controls.target.set(28, 3, -16); controls.update(); }
+    document.getElementById('floor').onchange = updateVisibility; document.getElementById('route').onclick = showRoute; document.getElementById('reset').onclick = resetCamera;
+    addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); });
+
+    // Keep each node's floating ID label glued to its dot's on-screen position every frame.
+    function updateLabels() {
+      if (!graph) return;
+      for (const node of graph.nodes) {
+        const marker = nodeMap[node.id], label = labelMap[node.id];
+        if (!marker.visible) { label.style.display = 'none'; continue; }
+        const screen = marker.position.clone().project(camera);
+        if (screen.z > 1) { label.style.display = 'none'; continue; } // behind the camera
+        label.style.display = 'block';
+        label.style.left = ((screen.x * 0.5 + 0.5) * innerWidth) + 'px';
+        label.style.top = ((1 - (screen.y * 0.5 + 0.5)) * innerHeight) + 'px';
+      }
+    }
+    function animate() { requestAnimationFrame(animate); controls.update(); renderer.render(scene, camera); updateLabels(); } load().catch(error => setStatus('Could not load STL: ' + error.message)); animate();
+  </script>
+</body>
+</html>

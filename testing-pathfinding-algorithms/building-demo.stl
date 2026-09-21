@@ -1,0 +1,3268 @@
+solid Corridor_F1_1
+  facet normal 0 0 1
+    outer loop
+      vertex 3 14 0
+      vertex 9 17 0
+      vertex 9 14 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 14 0
+      vertex 9 14 0
+      vertex 3 17 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 14 2.5
+      vertex 9 14 2.5
+      vertex 9 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 14 2.5
+      vertex 9 17 2.5
+      vertex 3 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 14 0
+      vertex 9 14 0
+      vertex 9 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 14 0
+      vertex 9 14 2.5
+      vertex 3 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 14 0
+      vertex 9 17 0
+      vertex 9 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 14 0
+      vertex 9 17 2.5
+      vertex 9 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 17 0
+      vertex 3 17 0
+      vertex 3 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 17 0
+      vertex 3 17 2.5
+      vertex 9 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 17 0
+      vertex 3 14 0
+      vertex 3 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 17 0
+      vertex 3 14 2.5
+      vertex 3 17 2.5
+    endloop
+  endfacet
+endsolid Corridor_F1_1
+solid Corridor_F1_2
+  facet normal 0 0 1
+    outer loop
+      vertex 11 14 0
+      vertex 17 17 0
+      vertex 17 14 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 14 0
+      vertex 17 14 0
+      vertex 11 17 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 14 2.5
+      vertex 17 14 2.5
+      vertex 17 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 14 2.5
+      vertex 17 17 2.5
+      vertex 11 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 14 0
+      vertex 17 14 0
+      vertex 17 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 14 0
+      vertex 17 14 2.5
+      vertex 11 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 14 0
+      vertex 17 17 0
+      vertex 17 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 14 0
+      vertex 17 17 2.5
+      vertex 17 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 17 0
+      vertex 11 17 0
+      vertex 11 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 17 0
+      vertex 11 17 2.5
+      vertex 17 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 17 0
+      vertex 11 14 0
+      vertex 11 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 17 0
+      vertex 11 14 2.5
+      vertex 11 17 2.5
+    endloop
+  endfacet
+endsolid Corridor_F1_2
+solid Corridor_F1_3
+  facet normal 0 0 1
+    outer loop
+      vertex 19 14 0
+      vertex 25 17 0
+      vertex 25 14 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 14 0
+      vertex 25 14 0
+      vertex 19 17 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 14 2.5
+      vertex 25 14 2.5
+      vertex 25 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 14 2.5
+      vertex 25 17 2.5
+      vertex 19 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 14 0
+      vertex 25 14 0
+      vertex 25 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 14 0
+      vertex 25 14 2.5
+      vertex 19 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 14 0
+      vertex 25 17 0
+      vertex 25 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 14 0
+      vertex 25 17 2.5
+      vertex 25 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 17 0
+      vertex 19 17 0
+      vertex 19 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 17 0
+      vertex 19 17 2.5
+      vertex 25 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 17 0
+      vertex 19 14 0
+      vertex 19 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 17 0
+      vertex 19 14 2.5
+      vertex 19 17 2.5
+    endloop
+  endfacet
+endsolid Corridor_F1_3
+solid Corridor_F1_4
+  facet normal 0 0 1
+    outer loop
+      vertex 27 14 0
+      vertex 33 17 0
+      vertex 33 14 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 14 0
+      vertex 33 14 0
+      vertex 27 17 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 14 2.5
+      vertex 33 14 2.5
+      vertex 33 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 14 2.5
+      vertex 33 17 2.5
+      vertex 27 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 14 0
+      vertex 33 14 0
+      vertex 33 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 14 0
+      vertex 33 14 2.5
+      vertex 27 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 14 0
+      vertex 33 17 0
+      vertex 33 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 14 0
+      vertex 33 17 2.5
+      vertex 33 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 17 0
+      vertex 27 17 0
+      vertex 27 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 17 0
+      vertex 27 17 2.5
+      vertex 33 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 17 0
+      vertex 27 14 0
+      vertex 27 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 17 0
+      vertex 27 14 2.5
+      vertex 27 17 2.5
+    endloop
+  endfacet
+endsolid Corridor_F1_4
+solid Corridor_F1_5
+  facet normal 0 0 1
+    outer loop
+      vertex 35 14 0
+      vertex 41 17 0
+      vertex 41 14 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 14 0
+      vertex 41 14 0
+      vertex 35 17 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 14 2.5
+      vertex 41 14 2.5
+      vertex 41 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 14 2.5
+      vertex 41 17 2.5
+      vertex 35 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 14 0
+      vertex 41 14 0
+      vertex 41 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 14 0
+      vertex 41 14 2.5
+      vertex 35 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 41 14 0
+      vertex 41 17 0
+      vertex 41 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 41 14 0
+      vertex 41 17 2.5
+      vertex 41 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 41 17 0
+      vertex 35 17 0
+      vertex 35 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 41 17 0
+      vertex 35 17 2.5
+      vertex 41 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 17 0
+      vertex 35 14 0
+      vertex 35 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 17 0
+      vertex 35 14 2.5
+      vertex 35 17 2.5
+    endloop
+  endfacet
+endsolid Corridor_F1_5
+solid Corridor_F1_6
+  facet normal 0 0 1
+    outer loop
+      vertex 43 14 0
+      vertex 49 17 0
+      vertex 49 14 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 14 0
+      vertex 49 14 0
+      vertex 43 17 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 14 2.5
+      vertex 49 14 2.5
+      vertex 49 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 14 2.5
+      vertex 49 17 2.5
+      vertex 43 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 14 0
+      vertex 49 14 0
+      vertex 49 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 14 0
+      vertex 49 14 2.5
+      vertex 43 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 49 14 0
+      vertex 49 17 0
+      vertex 49 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 49 14 0
+      vertex 49 17 2.5
+      vertex 49 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 49 17 0
+      vertex 43 17 0
+      vertex 43 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 49 17 0
+      vertex 43 17 2.5
+      vertex 49 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 17 0
+      vertex 43 14 0
+      vertex 43 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 17 0
+      vertex 43 14 2.5
+      vertex 43 17 2.5
+    endloop
+  endfacet
+endsolid Corridor_F1_6
+solid Room_101
+  facet normal 0 0 1
+    outer loop
+      vertex 3 2 0
+      vertex 9 7 0
+      vertex 9 2 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 2 0
+      vertex 9 2 0
+      vertex 3 7 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 2 2.5
+      vertex 9 2 2.5
+      vertex 9 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 2 2.5
+      vertex 9 7 2.5
+      vertex 3 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 2 0
+      vertex 9 2 0
+      vertex 9 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 2 0
+      vertex 9 2 2.5
+      vertex 3 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 2 0
+      vertex 9 7 0
+      vertex 9 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 2 0
+      vertex 9 7 2.5
+      vertex 9 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 7 0
+      vertex 3 7 0
+      vertex 3 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 7 0
+      vertex 3 7 2.5
+      vertex 9 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 7 0
+      vertex 3 2 0
+      vertex 3 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 7 0
+      vertex 3 2 2.5
+      vertex 3 7 2.5
+    endloop
+  endfacet
+endsolid Room_101
+solid Room_102
+  facet normal 0 0 1
+    outer loop
+      vertex 11 2 0
+      vertex 17 7 0
+      vertex 17 2 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 2 0
+      vertex 17 2 0
+      vertex 11 7 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 2 2.5
+      vertex 17 2 2.5
+      vertex 17 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 2 2.5
+      vertex 17 7 2.5
+      vertex 11 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 2 0
+      vertex 17 2 0
+      vertex 17 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 2 0
+      vertex 17 2 2.5
+      vertex 11 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 2 0
+      vertex 17 7 0
+      vertex 17 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 2 0
+      vertex 17 7 2.5
+      vertex 17 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 7 0
+      vertex 11 7 0
+      vertex 11 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 7 0
+      vertex 11 7 2.5
+      vertex 17 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 7 0
+      vertex 11 2 0
+      vertex 11 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 7 0
+      vertex 11 2 2.5
+      vertex 11 7 2.5
+    endloop
+  endfacet
+endsolid Room_102
+solid Room_103
+  facet normal 0 0 1
+    outer loop
+      vertex 19 2 0
+      vertex 25 7 0
+      vertex 25 2 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 2 0
+      vertex 25 2 0
+      vertex 19 7 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 2 2.5
+      vertex 25 2 2.5
+      vertex 25 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 2 2.5
+      vertex 25 7 2.5
+      vertex 19 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 2 0
+      vertex 25 2 0
+      vertex 25 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 2 0
+      vertex 25 2 2.5
+      vertex 19 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 2 0
+      vertex 25 7 0
+      vertex 25 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 2 0
+      vertex 25 7 2.5
+      vertex 25 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 7 0
+      vertex 19 7 0
+      vertex 19 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 7 0
+      vertex 19 7 2.5
+      vertex 25 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 7 0
+      vertex 19 2 0
+      vertex 19 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 7 0
+      vertex 19 2 2.5
+      vertex 19 7 2.5
+    endloop
+  endfacet
+endsolid Room_103
+solid Room_104
+  facet normal 0 0 1
+    outer loop
+      vertex 27 2 0
+      vertex 33 7 0
+      vertex 33 2 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 2 0
+      vertex 33 2 0
+      vertex 27 7 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 2 2.5
+      vertex 33 2 2.5
+      vertex 33 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 2 2.5
+      vertex 33 7 2.5
+      vertex 27 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 2 0
+      vertex 33 2 0
+      vertex 33 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 2 0
+      vertex 33 2 2.5
+      vertex 27 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 2 0
+      vertex 33 7 0
+      vertex 33 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 2 0
+      vertex 33 7 2.5
+      vertex 33 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 7 0
+      vertex 27 7 0
+      vertex 27 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 7 0
+      vertex 27 7 2.5
+      vertex 33 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 7 0
+      vertex 27 2 0
+      vertex 27 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 7 0
+      vertex 27 2 2.5
+      vertex 27 7 2.5
+    endloop
+  endfacet
+endsolid Room_104
+solid Room_105
+  facet normal 0 0 1
+    outer loop
+      vertex 35 2 0
+      vertex 41 7 0
+      vertex 41 2 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 2 0
+      vertex 41 2 0
+      vertex 35 7 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 2 2.5
+      vertex 41 2 2.5
+      vertex 41 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 2 2.5
+      vertex 41 7 2.5
+      vertex 35 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 2 0
+      vertex 41 2 0
+      vertex 41 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 2 0
+      vertex 41 2 2.5
+      vertex 35 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 41 2 0
+      vertex 41 7 0
+      vertex 41 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 41 2 0
+      vertex 41 7 2.5
+      vertex 41 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 41 7 0
+      vertex 35 7 0
+      vertex 35 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 41 7 0
+      vertex 35 7 2.5
+      vertex 41 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 7 0
+      vertex 35 2 0
+      vertex 35 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 7 0
+      vertex 35 2 2.5
+      vertex 35 7 2.5
+    endloop
+  endfacet
+endsolid Room_105
+solid Room_106
+  facet normal 0 0 1
+    outer loop
+      vertex 43 2 0
+      vertex 49 7 0
+      vertex 49 2 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 2 0
+      vertex 49 2 0
+      vertex 43 7 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 2 2.5
+      vertex 49 2 2.5
+      vertex 49 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 2 2.5
+      vertex 49 7 2.5
+      vertex 43 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 2 0
+      vertex 49 2 0
+      vertex 49 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 2 0
+      vertex 49 2 2.5
+      vertex 43 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 49 2 0
+      vertex 49 7 0
+      vertex 49 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 49 2 0
+      vertex 49 7 2.5
+      vertex 49 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 49 7 0
+      vertex 43 7 0
+      vertex 43 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 49 7 0
+      vertex 43 7 2.5
+      vertex 49 7 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 7 0
+      vertex 43 2 0
+      vertex 43 2 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 7 0
+      vertex 43 2 2.5
+      vertex 43 7 2.5
+    endloop
+  endfacet
+endsolid Room_106
+solid Room_107
+  facet normal 0 0 1
+    outer loop
+      vertex 3 25 0
+      vertex 9 30 0
+      vertex 9 25 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 25 0
+      vertex 9 25 0
+      vertex 3 30 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 25 2.5
+      vertex 9 25 2.5
+      vertex 9 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 25 2.5
+      vertex 9 30 2.5
+      vertex 3 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 25 0
+      vertex 9 25 0
+      vertex 9 25 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 25 0
+      vertex 9 25 2.5
+      vertex 3 25 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 25 0
+      vertex 9 30 0
+      vertex 9 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 25 0
+      vertex 9 30 2.5
+      vertex 9 25 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 30 0
+      vertex 3 30 0
+      vertex 3 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 30 0
+      vertex 3 30 2.5
+      vertex 9 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 30 0
+      vertex 3 25 0
+      vertex 3 25 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 30 0
+      vertex 3 25 2.5
+      vertex 3 30 2.5
+    endloop
+  endfacet
+endsolid Room_107
+solid Room_108
+  facet normal 0 0 1
+    outer loop
+      vertex 11 25 0
+      vertex 17 30 0
+      vertex 17 25 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 25 0
+      vertex 17 25 0
+      vertex 11 30 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 25 2.5
+      vertex 17 25 2.5
+      vertex 17 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 25 2.5
+      vertex 17 30 2.5
+      vertex 11 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 25 0
+      vertex 17 25 0
+      vertex 17 25 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 25 0
+      vertex 17 25 2.5
+      vertex 11 25 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 25 0
+      vertex 17 30 0
+      vertex 17 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 25 0
+      vertex 17 30 2.5
+      vertex 17 25 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 30 0
+      vertex 11 30 0
+      vertex 11 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 30 0
+      vertex 11 30 2.5
+      vertex 17 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 30 0
+      vertex 11 25 0
+      vertex 11 25 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 30 0
+      vertex 11 25 2.5
+      vertex 11 30 2.5
+    endloop
+  endfacet
+endsolid Room_108
+solid Room_109
+  facet normal 0 0 1
+    outer loop
+      vertex 19 25 0
+      vertex 25 30 0
+      vertex 25 25 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 25 0
+      vertex 25 25 0
+      vertex 19 30 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 25 2.5
+      vertex 25 25 2.5
+      vertex 25 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 25 2.5
+      vertex 25 30 2.5
+      vertex 19 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 25 0
+      vertex 25 25 0
+      vertex 25 25 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 25 0
+      vertex 25 25 2.5
+      vertex 19 25 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 25 0
+      vertex 25 30 0
+      vertex 25 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 25 0
+      vertex 25 30 2.5
+      vertex 25 25 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 30 0
+      vertex 19 30 0
+      vertex 19 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 30 0
+      vertex 19 30 2.5
+      vertex 25 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 30 0
+      vertex 19 25 0
+      vertex 19 25 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 30 0
+      vertex 19 25 2.5
+      vertex 19 30 2.5
+    endloop
+  endfacet
+endsolid Room_109
+solid Room_110
+  facet normal 0 0 1
+    outer loop
+      vertex 27 25 0
+      vertex 33 30 0
+      vertex 33 25 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 25 0
+      vertex 33 25 0
+      vertex 27 30 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 25 2.5
+      vertex 33 25 2.5
+      vertex 33 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 25 2.5
+      vertex 33 30 2.5
+      vertex 27 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 25 0
+      vertex 33 25 0
+      vertex 33 25 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 25 0
+      vertex 33 25 2.5
+      vertex 27 25 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 25 0
+      vertex 33 30 0
+      vertex 33 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 25 0
+      vertex 33 30 2.5
+      vertex 33 25 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 30 0
+      vertex 27 30 0
+      vertex 27 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 30 0
+      vertex 27 30 2.5
+      vertex 33 30 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 30 0
+      vertex 27 25 0
+      vertex 27 25 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 30 0
+      vertex 27 25 2.5
+      vertex 27 30 2.5
+    endloop
+  endfacet
+endsolid Room_110
+solid Lift_F1
+  facet normal 0 0 1
+    outer loop
+      vertex 0 8 0
+      vertex 4 11 0
+      vertex 4 8 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 8 0
+      vertex 4 8 0
+      vertex 0 11 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 8 2.5
+      vertex 4 8 2.5
+      vertex 4 11 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 8 2.5
+      vertex 4 11 2.5
+      vertex 0 11 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 8 0
+      vertex 4 8 0
+      vertex 4 8 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 8 0
+      vertex 4 8 2.5
+      vertex 0 8 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 4 8 0
+      vertex 4 11 0
+      vertex 4 11 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 4 8 0
+      vertex 4 11 2.5
+      vertex 4 8 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 4 11 0
+      vertex 0 11 0
+      vertex 0 11 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 4 11 0
+      vertex 0 11 2.5
+      vertex 4 11 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 11 0
+      vertex 0 8 0
+      vertex 0 8 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 11 0
+      vertex 0 8 2.5
+      vertex 0 11 2.5
+    endloop
+  endfacet
+endsolid Lift_F1
+solid Stairs_1_F1
+  facet normal 0 0 1
+    outer loop
+      vertex 0 21 0
+      vertex 4 24 0
+      vertex 4 21 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 21 0
+      vertex 4 21 0
+      vertex 0 24 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 21 2.5
+      vertex 4 21 2.5
+      vertex 4 24 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 21 2.5
+      vertex 4 24 2.5
+      vertex 0 24 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 21 0
+      vertex 4 21 0
+      vertex 4 21 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 21 0
+      vertex 4 21 2.5
+      vertex 0 21 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 4 21 0
+      vertex 4 24 0
+      vertex 4 24 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 4 21 0
+      vertex 4 24 2.5
+      vertex 4 21 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 4 24 0
+      vertex 0 24 0
+      vertex 0 24 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 4 24 0
+      vertex 0 24 2.5
+      vertex 4 24 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 24 0
+      vertex 0 21 0
+      vertex 0 21 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 24 0
+      vertex 0 21 2.5
+      vertex 0 24 2.5
+    endloop
+  endfacet
+endsolid Stairs_1_F1
+solid Stairs_2_F1
+  facet normal 0 0 1
+    outer loop
+      vertex 53 14 0
+      vertex 57 17 0
+      vertex 57 14 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 53 14 0
+      vertex 57 14 0
+      vertex 53 17 0
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 53 14 2.5
+      vertex 57 14 2.5
+      vertex 57 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 53 14 2.5
+      vertex 57 17 2.5
+      vertex 53 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 53 14 0
+      vertex 57 14 0
+      vertex 57 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 53 14 0
+      vertex 57 14 2.5
+      vertex 53 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 57 14 0
+      vertex 57 17 0
+      vertex 57 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 57 14 0
+      vertex 57 17 2.5
+      vertex 57 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 57 17 0
+      vertex 53 17 0
+      vertex 53 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 57 17 0
+      vertex 53 17 2.5
+      vertex 57 17 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 53 17 0
+      vertex 53 14 0
+      vertex 53 14 2.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 53 17 0
+      vertex 53 14 2.5
+      vertex 53 17 2.5
+    endloop
+  endfacet
+endsolid Stairs_2_F1
+solid Corridor_F2_1
+  facet normal 0 0 1
+    outer loop
+      vertex 3 14 4
+      vertex 9 17 4
+      vertex 9 14 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 14 4
+      vertex 9 14 4
+      vertex 3 17 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 14 6.5
+      vertex 9 14 6.5
+      vertex 9 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 14 6.5
+      vertex 9 17 6.5
+      vertex 3 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 14 4
+      vertex 9 14 4
+      vertex 9 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 14 4
+      vertex 9 14 6.5
+      vertex 3 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 14 4
+      vertex 9 17 4
+      vertex 9 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 14 4
+      vertex 9 17 6.5
+      vertex 9 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 17 4
+      vertex 3 17 4
+      vertex 3 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 17 4
+      vertex 3 17 6.5
+      vertex 9 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 17 4
+      vertex 3 14 4
+      vertex 3 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 17 4
+      vertex 3 14 6.5
+      vertex 3 17 6.5
+    endloop
+  endfacet
+endsolid Corridor_F2_1
+solid Corridor_F2_2
+  facet normal 0 0 1
+    outer loop
+      vertex 11 14 4
+      vertex 17 17 4
+      vertex 17 14 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 14 4
+      vertex 17 14 4
+      vertex 11 17 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 14 6.5
+      vertex 17 14 6.5
+      vertex 17 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 14 6.5
+      vertex 17 17 6.5
+      vertex 11 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 14 4
+      vertex 17 14 4
+      vertex 17 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 14 4
+      vertex 17 14 6.5
+      vertex 11 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 14 4
+      vertex 17 17 4
+      vertex 17 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 14 4
+      vertex 17 17 6.5
+      vertex 17 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 17 4
+      vertex 11 17 4
+      vertex 11 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 17 4
+      vertex 11 17 6.5
+      vertex 17 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 17 4
+      vertex 11 14 4
+      vertex 11 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 17 4
+      vertex 11 14 6.5
+      vertex 11 17 6.5
+    endloop
+  endfacet
+endsolid Corridor_F2_2
+solid Corridor_F2_3
+  facet normal 0 0 1
+    outer loop
+      vertex 19 14 4
+      vertex 25 17 4
+      vertex 25 14 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 14 4
+      vertex 25 14 4
+      vertex 19 17 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 14 6.5
+      vertex 25 14 6.5
+      vertex 25 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 14 6.5
+      vertex 25 17 6.5
+      vertex 19 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 14 4
+      vertex 25 14 4
+      vertex 25 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 14 4
+      vertex 25 14 6.5
+      vertex 19 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 14 4
+      vertex 25 17 4
+      vertex 25 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 14 4
+      vertex 25 17 6.5
+      vertex 25 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 17 4
+      vertex 19 17 4
+      vertex 19 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 17 4
+      vertex 19 17 6.5
+      vertex 25 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 17 4
+      vertex 19 14 4
+      vertex 19 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 17 4
+      vertex 19 14 6.5
+      vertex 19 17 6.5
+    endloop
+  endfacet
+endsolid Corridor_F2_3
+solid Corridor_F2_4
+  facet normal 0 0 1
+    outer loop
+      vertex 27 14 4
+      vertex 33 17 4
+      vertex 33 14 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 14 4
+      vertex 33 14 4
+      vertex 27 17 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 14 6.5
+      vertex 33 14 6.5
+      vertex 33 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 14 6.5
+      vertex 33 17 6.5
+      vertex 27 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 14 4
+      vertex 33 14 4
+      vertex 33 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 14 4
+      vertex 33 14 6.5
+      vertex 27 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 14 4
+      vertex 33 17 4
+      vertex 33 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 14 4
+      vertex 33 17 6.5
+      vertex 33 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 17 4
+      vertex 27 17 4
+      vertex 27 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 17 4
+      vertex 27 17 6.5
+      vertex 33 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 17 4
+      vertex 27 14 4
+      vertex 27 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 17 4
+      vertex 27 14 6.5
+      vertex 27 17 6.5
+    endloop
+  endfacet
+endsolid Corridor_F2_4
+solid Corridor_F2_5
+  facet normal 0 0 1
+    outer loop
+      vertex 35 14 4
+      vertex 41 17 4
+      vertex 41 14 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 14 4
+      vertex 41 14 4
+      vertex 35 17 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 14 6.5
+      vertex 41 14 6.5
+      vertex 41 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 14 6.5
+      vertex 41 17 6.5
+      vertex 35 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 14 4
+      vertex 41 14 4
+      vertex 41 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 14 4
+      vertex 41 14 6.5
+      vertex 35 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 41 14 4
+      vertex 41 17 4
+      vertex 41 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 41 14 4
+      vertex 41 17 6.5
+      vertex 41 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 41 17 4
+      vertex 35 17 4
+      vertex 35 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 41 17 4
+      vertex 35 17 6.5
+      vertex 41 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 17 4
+      vertex 35 14 4
+      vertex 35 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 17 4
+      vertex 35 14 6.5
+      vertex 35 17 6.5
+    endloop
+  endfacet
+endsolid Corridor_F2_5
+solid Corridor_F2_6
+  facet normal 0 0 1
+    outer loop
+      vertex 43 14 4
+      vertex 49 17 4
+      vertex 49 14 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 14 4
+      vertex 49 14 4
+      vertex 43 17 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 14 6.5
+      vertex 49 14 6.5
+      vertex 49 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 14 6.5
+      vertex 49 17 6.5
+      vertex 43 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 14 4
+      vertex 49 14 4
+      vertex 49 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 14 4
+      vertex 49 14 6.5
+      vertex 43 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 49 14 4
+      vertex 49 17 4
+      vertex 49 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 49 14 4
+      vertex 49 17 6.5
+      vertex 49 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 49 17 4
+      vertex 43 17 4
+      vertex 43 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 49 17 4
+      vertex 43 17 6.5
+      vertex 49 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 17 4
+      vertex 43 14 4
+      vertex 43 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 17 4
+      vertex 43 14 6.5
+      vertex 43 17 6.5
+    endloop
+  endfacet
+endsolid Corridor_F2_6
+solid Room_201
+  facet normal 0 0 1
+    outer loop
+      vertex 3 2 4
+      vertex 9 7 4
+      vertex 9 2 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 2 4
+      vertex 9 2 4
+      vertex 3 7 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 2 6.5
+      vertex 9 2 6.5
+      vertex 9 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 2 6.5
+      vertex 9 7 6.5
+      vertex 3 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 2 4
+      vertex 9 2 4
+      vertex 9 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 2 4
+      vertex 9 2 6.5
+      vertex 3 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 2 4
+      vertex 9 7 4
+      vertex 9 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 2 4
+      vertex 9 7 6.5
+      vertex 9 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 7 4
+      vertex 3 7 4
+      vertex 3 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 7 4
+      vertex 3 7 6.5
+      vertex 9 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 7 4
+      vertex 3 2 4
+      vertex 3 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 7 4
+      vertex 3 2 6.5
+      vertex 3 7 6.5
+    endloop
+  endfacet
+endsolid Room_201
+solid Room_202
+  facet normal 0 0 1
+    outer loop
+      vertex 11 2 4
+      vertex 17 7 4
+      vertex 17 2 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 2 4
+      vertex 17 2 4
+      vertex 11 7 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 2 6.5
+      vertex 17 2 6.5
+      vertex 17 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 2 6.5
+      vertex 17 7 6.5
+      vertex 11 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 2 4
+      vertex 17 2 4
+      vertex 17 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 2 4
+      vertex 17 2 6.5
+      vertex 11 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 2 4
+      vertex 17 7 4
+      vertex 17 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 2 4
+      vertex 17 7 6.5
+      vertex 17 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 7 4
+      vertex 11 7 4
+      vertex 11 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 7 4
+      vertex 11 7 6.5
+      vertex 17 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 7 4
+      vertex 11 2 4
+      vertex 11 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 7 4
+      vertex 11 2 6.5
+      vertex 11 7 6.5
+    endloop
+  endfacet
+endsolid Room_202
+solid Room_203
+  facet normal 0 0 1
+    outer loop
+      vertex 19 2 4
+      vertex 25 7 4
+      vertex 25 2 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 2 4
+      vertex 25 2 4
+      vertex 19 7 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 2 6.5
+      vertex 25 2 6.5
+      vertex 25 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 2 6.5
+      vertex 25 7 6.5
+      vertex 19 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 2 4
+      vertex 25 2 4
+      vertex 25 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 2 4
+      vertex 25 2 6.5
+      vertex 19 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 2 4
+      vertex 25 7 4
+      vertex 25 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 2 4
+      vertex 25 7 6.5
+      vertex 25 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 7 4
+      vertex 19 7 4
+      vertex 19 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 7 4
+      vertex 19 7 6.5
+      vertex 25 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 7 4
+      vertex 19 2 4
+      vertex 19 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 7 4
+      vertex 19 2 6.5
+      vertex 19 7 6.5
+    endloop
+  endfacet
+endsolid Room_203
+solid Room_204
+  facet normal 0 0 1
+    outer loop
+      vertex 27 2 4
+      vertex 33 7 4
+      vertex 33 2 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 2 4
+      vertex 33 2 4
+      vertex 27 7 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 2 6.5
+      vertex 33 2 6.5
+      vertex 33 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 2 6.5
+      vertex 33 7 6.5
+      vertex 27 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 2 4
+      vertex 33 2 4
+      vertex 33 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 2 4
+      vertex 33 2 6.5
+      vertex 27 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 2 4
+      vertex 33 7 4
+      vertex 33 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 2 4
+      vertex 33 7 6.5
+      vertex 33 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 7 4
+      vertex 27 7 4
+      vertex 27 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 7 4
+      vertex 27 7 6.5
+      vertex 33 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 7 4
+      vertex 27 2 4
+      vertex 27 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 7 4
+      vertex 27 2 6.5
+      vertex 27 7 6.5
+    endloop
+  endfacet
+endsolid Room_204
+solid Room_205
+  facet normal 0 0 1
+    outer loop
+      vertex 35 2 4
+      vertex 41 7 4
+      vertex 41 2 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 2 4
+      vertex 41 2 4
+      vertex 35 7 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 2 6.5
+      vertex 41 2 6.5
+      vertex 41 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 2 6.5
+      vertex 41 7 6.5
+      vertex 35 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 2 4
+      vertex 41 2 4
+      vertex 41 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 2 4
+      vertex 41 2 6.5
+      vertex 35 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 41 2 4
+      vertex 41 7 4
+      vertex 41 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 41 2 4
+      vertex 41 7 6.5
+      vertex 41 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 41 7 4
+      vertex 35 7 4
+      vertex 35 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 41 7 4
+      vertex 35 7 6.5
+      vertex 41 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 7 4
+      vertex 35 2 4
+      vertex 35 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 35 7 4
+      vertex 35 2 6.5
+      vertex 35 7 6.5
+    endloop
+  endfacet
+endsolid Room_205
+solid Room_206
+  facet normal 0 0 1
+    outer loop
+      vertex 43 2 4
+      vertex 49 7 4
+      vertex 49 2 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 2 4
+      vertex 49 2 4
+      vertex 43 7 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 2 6.5
+      vertex 49 2 6.5
+      vertex 49 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 2 6.5
+      vertex 49 7 6.5
+      vertex 43 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 2 4
+      vertex 49 2 4
+      vertex 49 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 2 4
+      vertex 49 2 6.5
+      vertex 43 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 49 2 4
+      vertex 49 7 4
+      vertex 49 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 49 2 4
+      vertex 49 7 6.5
+      vertex 49 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 49 7 4
+      vertex 43 7 4
+      vertex 43 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 49 7 4
+      vertex 43 7 6.5
+      vertex 49 7 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 7 4
+      vertex 43 2 4
+      vertex 43 2 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 43 7 4
+      vertex 43 2 6.5
+      vertex 43 7 6.5
+    endloop
+  endfacet
+endsolid Room_206
+solid Room_207
+  facet normal 0 0 1
+    outer loop
+      vertex 3 25 4
+      vertex 9 30 4
+      vertex 9 25 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 25 4
+      vertex 9 25 4
+      vertex 3 30 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 25 6.5
+      vertex 9 25 6.5
+      vertex 9 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 25 6.5
+      vertex 9 30 6.5
+      vertex 3 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 25 4
+      vertex 9 25 4
+      vertex 9 25 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 25 4
+      vertex 9 25 6.5
+      vertex 3 25 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 25 4
+      vertex 9 30 4
+      vertex 9 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 25 4
+      vertex 9 30 6.5
+      vertex 9 25 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 30 4
+      vertex 3 30 4
+      vertex 3 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 9 30 4
+      vertex 3 30 6.5
+      vertex 9 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 30 4
+      vertex 3 25 4
+      vertex 3 25 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 3 30 4
+      vertex 3 25 6.5
+      vertex 3 30 6.5
+    endloop
+  endfacet
+endsolid Room_207
+solid Room_208
+  facet normal 0 0 1
+    outer loop
+      vertex 11 25 4
+      vertex 17 30 4
+      vertex 17 25 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 25 4
+      vertex 17 25 4
+      vertex 11 30 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 25 6.5
+      vertex 17 25 6.5
+      vertex 17 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 25 6.5
+      vertex 17 30 6.5
+      vertex 11 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 25 4
+      vertex 17 25 4
+      vertex 17 25 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 25 4
+      vertex 17 25 6.5
+      vertex 11 25 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 25 4
+      vertex 17 30 4
+      vertex 17 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 25 4
+      vertex 17 30 6.5
+      vertex 17 25 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 30 4
+      vertex 11 30 4
+      vertex 11 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 17 30 4
+      vertex 11 30 6.5
+      vertex 17 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 30 4
+      vertex 11 25 4
+      vertex 11 25 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 11 30 4
+      vertex 11 25 6.5
+      vertex 11 30 6.5
+    endloop
+  endfacet
+endsolid Room_208
+solid Room_209
+  facet normal 0 0 1
+    outer loop
+      vertex 19 25 4
+      vertex 25 30 4
+      vertex 25 25 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 25 4
+      vertex 25 25 4
+      vertex 19 30 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 25 6.5
+      vertex 25 25 6.5
+      vertex 25 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 25 6.5
+      vertex 25 30 6.5
+      vertex 19 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 25 4
+      vertex 25 25 4
+      vertex 25 25 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 25 4
+      vertex 25 25 6.5
+      vertex 19 25 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 25 4
+      vertex 25 30 4
+      vertex 25 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 25 4
+      vertex 25 30 6.5
+      vertex 25 25 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 30 4
+      vertex 19 30 4
+      vertex 19 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 25 30 4
+      vertex 19 30 6.5
+      vertex 25 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 30 4
+      vertex 19 25 4
+      vertex 19 25 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 19 30 4
+      vertex 19 25 6.5
+      vertex 19 30 6.5
+    endloop
+  endfacet
+endsolid Room_209
+solid Room_210
+  facet normal 0 0 1
+    outer loop
+      vertex 27 25 4
+      vertex 33 30 4
+      vertex 33 25 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 25 4
+      vertex 33 25 4
+      vertex 27 30 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 25 6.5
+      vertex 33 25 6.5
+      vertex 33 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 25 6.5
+      vertex 33 30 6.5
+      vertex 27 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 25 4
+      vertex 33 25 4
+      vertex 33 25 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 25 4
+      vertex 33 25 6.5
+      vertex 27 25 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 25 4
+      vertex 33 30 4
+      vertex 33 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 25 4
+      vertex 33 30 6.5
+      vertex 33 25 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 30 4
+      vertex 27 30 4
+      vertex 27 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 33 30 4
+      vertex 27 30 6.5
+      vertex 33 30 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 30 4
+      vertex 27 25 4
+      vertex 27 25 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 27 30 4
+      vertex 27 25 6.5
+      vertex 27 30 6.5
+    endloop
+  endfacet
+endsolid Room_210
+solid Lift_F2
+  facet normal 0 0 1
+    outer loop
+      vertex 0 8 4
+      vertex 4 11 4
+      vertex 4 8 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 8 4
+      vertex 4 8 4
+      vertex 0 11 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 8 6.5
+      vertex 4 8 6.5
+      vertex 4 11 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 8 6.5
+      vertex 4 11 6.5
+      vertex 0 11 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 8 4
+      vertex 4 8 4
+      vertex 4 8 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 8 4
+      vertex 4 8 6.5
+      vertex 0 8 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 4 8 4
+      vertex 4 11 4
+      vertex 4 11 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 4 8 4
+      vertex 4 11 6.5
+      vertex 4 8 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 4 11 4
+      vertex 0 11 4
+      vertex 0 11 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 4 11 4
+      vertex 0 11 6.5
+      vertex 4 11 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 11 4
+      vertex 0 8 4
+      vertex 0 8 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 11 4
+      vertex 0 8 6.5
+      vertex 0 11 6.5
+    endloop
+  endfacet
+endsolid Lift_F2
+solid Stairs_1_F2
+  facet normal 0 0 1
+    outer loop
+      vertex 0 21 4
+      vertex 4 24 4
+      vertex 4 21 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 21 4
+      vertex 4 21 4
+      vertex 0 24 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 21 6.5
+      vertex 4 21 6.5
+      vertex 4 24 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 21 6.5
+      vertex 4 24 6.5
+      vertex 0 24 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 21 4
+      vertex 4 21 4
+      vertex 4 21 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 21 4
+      vertex 4 21 6.5
+      vertex 0 21 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 4 21 4
+      vertex 4 24 4
+      vertex 4 24 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 4 21 4
+      vertex 4 24 6.5
+      vertex 4 21 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 4 24 4
+      vertex 0 24 4
+      vertex 0 24 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 4 24 4
+      vertex 0 24 6.5
+      vertex 4 24 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 24 4
+      vertex 0 21 4
+      vertex 0 21 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 0 24 4
+      vertex 0 21 6.5
+      vertex 0 24 6.5
+    endloop
+  endfacet
+endsolid Stairs_1_F2
+solid Stairs_2_F2
+  facet normal 0 0 1
+    outer loop
+      vertex 53 14 4
+      vertex 57 17 4
+      vertex 57 14 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 53 14 4
+      vertex 57 14 4
+      vertex 53 17 4
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 53 14 6.5
+      vertex 57 14 6.5
+      vertex 57 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 53 14 6.5
+      vertex 57 17 6.5
+      vertex 53 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 53 14 4
+      vertex 57 14 4
+      vertex 57 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 53 14 4
+      vertex 57 14 6.5
+      vertex 53 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 57 14 4
+      vertex 57 17 4
+      vertex 57 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 57 14 4
+      vertex 57 17 6.5
+      vertex 57 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 57 17 4
+      vertex 53 17 4
+      vertex 53 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 57 17 4
+      vertex 53 17 6.5
+      vertex 57 17 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 53 17 4
+      vertex 53 14 4
+      vertex 53 14 6.5
+    endloop
+  endfacet
+  facet normal 0 0 1
+    outer loop
+      vertex 53 17 4
+      vertex 53 14 6.5
+      vertex 53 17 6.5
+    endloop
+  endfacet
+endsolid Stairs_2_F2

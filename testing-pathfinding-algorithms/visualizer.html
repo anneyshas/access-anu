@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pathfinding Lab</title>
+  <style>
+    :root { --ink: #172026; --muted: #65747c; --paper: #f5f1e9; --panel: #fffdf8; --line: #d8d1c4; --teal: #087f8c; --coral: #d85d48; --gold: #d49a28; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; color: var(--ink); background: radial-gradient(circle at 10% 0%, #fff9e8 0, transparent 34rem), var(--paper); font: 15px/1.45 Georgia, serif; }
+    header { max-width: 1200px; margin: 0 auto; padding: 42px 28px 22px; display: flex; align-items: end; justify-content: space-between; gap: 24px; }
+    h1 { margin: 0; font-size: clamp(2rem, 5vw, 4rem); line-height: .95; letter-spacing: -.04em; font-weight: 500; }
+    header p { max-width: 330px; margin: 0; color: var(--muted); }
+    main { max-width: 1200px; margin: 0 auto; padding: 0 28px 44px; display: grid; grid-template-columns: 1fr 310px; gap: 18px; }
+    .board, .panel { background: rgba(255,253,248,.88); border: 1px solid var(--line); box-shadow: 0 18px 45px rgba(58,47,27,.08); }
+    .board { min-height: 620px; padding: 12px; position: relative; }
+    canvas { display: block; width: 100%; height: 594px; background: #fdfbf5; }
+    .panel { padding: 22px; }
+    .panel h2 { margin: 0 0 18px; font-size: 1.25rem; font-weight: 500; }
+    label { display: block; margin: 14px 0 6px; color: var(--muted); font-size: .82rem; text-transform: uppercase; letter-spacing: .08em; }
+    select, button { width: 100%; border: 1px solid var(--line); background: #fff; color: var(--ink); font: inherit; padding: 10px 12px; }
+    button { cursor: pointer; border-color: var(--ink); margin-top: 10px; transition: transform .15s, background .15s; }
+    button:hover { transform: translateY(-1px); background: #f2eee4; }
+    .primary { background: var(--teal); color: white; border-color: var(--teal); }
+    .switch { display: flex; align-items: center; gap: 10px; margin: 17px 0; color: var(--muted); }
+    .switch input { accent-color: var(--teal); width: 17px; height: 17px; }
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 22px; }
+    .stat { padding: 10px; background: #f3eee4; }
+    .stat span { display: block; color: var(--muted); font: 11px/1.2 ui-monospace, monospace; text-transform: uppercase; }
+    .stat strong { display: block; margin-top: 5px; font-size: 1.1rem; }
+    #message { min-height: 40px; margin: 17px 0 0; color: var(--muted); }
+    #events { height: 146px; overflow: auto; padding: 10px; background: #182126; color: #d6e4dd; font: 12px/1.7 ui-monospace, monospace; }
+    .legend { position: absolute; left: 25px; bottom: 25px; padding: 8px 10px; background: rgba(255,253,248,.9); border: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
+    @media (max-width: 850px) { header { display: block; } header p { margin-top: 14px; } main { grid-template-columns: 1fr; } .board { min-height: 450px; } canvas { height: 430px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Pathfinding<br>Lab</h1>
+    <p>Run the algorithms from <em>pathfinding.js</em> against the graph extracted from the demo STL scan.</p>
+  </header>
+  <main>
+    <section class="board">
+      <canvas id="map" aria-label="Pathfinding graph visualization"></canvas>
+      <div class="legend">● node &nbsp; <span style="color:#087f8c">●</span> explored &nbsp; <span style="color:#d85d48">●</span> path</div>
+    </section>
+    <aside class="panel">
+      <h2>Test a route</h2>
+      <label for="algorithm">Algorithm</label>
+      <select id="algorithm"><option value="aStar">A* search</option><option value="dijkstra">Dijkstra</option></select>
+      <label for="start">Start</label>
+      <select id="start"></select>
+      <label for="goal">Destination</label>
+      <select id="goal"></select>
+      <label for="floor">Visible floor</label>
+      <select id="floor"><option value="all">All floors</option><option value="1">Floor 1</option><option value="2">Floor 2</option></select>
+      <label class="switch"><input id="accessible" type="checkbox"> Accessibility mode (no stairs)</label>
+      <button class="primary" id="run">Run animation</button>
+      <button id="step">Step once</button>
+      <button id="reset">Reset view</button>
+      <div class="stats"><div class="stat"><span>Cost</span><strong id="cost">—</strong></div><div class="stat"><span>Explored</span><strong id="explored">0</strong></div></div>
+      <p id="message">Loading graph…</p>
+      <div id="events" aria-live="polite"></div>
+    </aside>
+  </main>
+  <script src="pathfinding.js"></script>
+  <script>
+    const canvas = document.getElementById('map');
+    const ctx = canvas.getContext('2d');
+    const controls = ['algorithm', 'start', 'goal', 'floor', 'accessible'].reduce((all, id) => ({ ...all, [id]: document.getElementById(id) }), {});
+    let data, events = [], eventIndex = 0, result, explored = new Set(), relaxed = new Map(), animation;
+
+    async function load() {
+      data = await fetch('graph-from-stl.json').then(response => response.json());
+      Pathfinding.setGraphData(data);
+      for (const node of data.nodes) {
+        controls.start.add(new Option(node.name + ' (' + node.id + ')', node.id));
+        controls.goal.add(new Option(node.name + ' (' + node.id + ')', node.id));
+      }
+      controls.start.value = 'R101'; controls.goal.value = 'R204';
+      document.getElementById('message').textContent = 'Choose a route, then run or step through it.';
+      draw();
+    }
+
+    function graph() { return Pathfinding.buildGraph(controls.accessible.checked, true); }
+    function point(node) {
+      const margin = 54, width = canvas.clientWidth - margin * 2, height = canvas.clientHeight - margin * 2;
+      const xs = data.nodes.map(item => item.x), ys = data.nodes.map(item => item.y);
+      const minX = Math.min(...xs), maxX = Math.max(...xs), minY = Math.min(...ys), maxY = Math.max(...ys);
+      return {
+        x: margin + (node.x - minX) / (maxX - minX) * width,
+        y: margin + (node.y - minY) / (maxY - minY) * height,
+      };
+    }
+    function visible(node) { return controls.floor.value === 'all' || String(node.floor) === controls.floor.value; }
+    function draw() {
+      if (!data) return;
+      const scale = window.devicePixelRatio || 1;
+      canvas.width = canvas.clientWidth * scale; canvas.height = canvas.clientHeight * scale; ctx.setTransform(scale, 0, 0, scale, 0, 0);
+      ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+      const nodeMap = Object.fromEntries(data.nodes.map(node => [node.id, node]));
+      for (const edge of data.edges) {
+        const a = nodeMap[edge.from], b = nodeMap[edge.to];
+        if (!visible(a) || !visible(b)) continue;
+        const pa = point(a), pb = point(b); ctx.beginPath(); ctx.moveTo(pa.x, pa.y); ctx.lineTo(pb.x, pb.y);
+        ctx.strokeStyle = edge.accessible ? '#c9c2b4' : '#e2b46c'; ctx.lineWidth = edge.accessible ? 2 : 3; ctx.setLineDash(edge.accessible ? [] : [6, 5]); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = '#8f897e'; ctx.font = '11px ui-monospace, monospace'; ctx.fillText(edge.weight + 'm', (pa.x + pb.x) / 2 + 4, (pa.y + pb.y) / 2 - 4);
+      }
+      const path = result?.path || [];
+      for (const node of data.nodes) {
+        if (!visible(node)) continue;
+        const p = point(node), isPath = path.includes(node.id), isStart = node.id === controls.start.value, isGoal = node.id === controls.goal.value;
+        ctx.beginPath(); ctx.arc(p.x, p.y, isPath ? 11 : 8, 0, Math.PI * 2);
+        ctx.fillStyle = isPath ? '#d85d48' : explored.has(node.id) ? '#087f8c' : '#fffdf8'; ctx.fill(); ctx.lineWidth = isStart || isGoal ? 3 : 2; ctx.strokeStyle = isStart ? '#087f8c' : isGoal ? '#d85d48' : '#172026'; ctx.stroke();
+        ctx.fillStyle = '#172026'; ctx.font = '12px ui-monospace, monospace'; ctx.fillText(node.id, p.x + 13, p.y + 4);
+      }
+    }
+    function prepare() {
+      cancelAnimationFrame(animation); explored.clear(); relaxed.clear(); result = null; events = []; eventIndex = 0;
+      result = Pathfinding[controls.algorithm.value](graph(), controls.start.value, controls.goal.value, event => events.push(event));
+      document.getElementById('cost').textContent = result.cost === Infinity ? 'No path' : result.cost + ' m';
+      document.getElementById('explored').textContent = result.nodesExplored;
+      document.getElementById('events').innerHTML = '<div>queued ' + events.length + ' visual events</div>';
+      draw();
+    }
+    function applyEvent(event) {
+      if (event.type === 'explore') explored.add(event.id); else relaxed.set(event.to, event.from);
+      document.getElementById('events').insertAdjacentHTML('beforeend', '<div>' + (event.type === 'explore' ? 'explore ' + event.id + ' @ ' + event.distance : 'relax ' + event.from + ' → ' + event.to) + '</div>');
+      draw();
+    }
+    function step() { if (!result || eventIndex >= events.length) prepare(); if (eventIndex < events.length) applyEvent(events[eventIndex++]); else draw(); }
+    document.getElementById('run').onclick = () => { prepare(); const play = () => { if (eventIndex < events.length) { applyEvent(events[eventIndex++]); animation = requestAnimationFrame(() => setTimeout(play, 160)); } else document.getElementById('message').textContent = result.path.length ? 'Route found: ' + result.path.join(' → ') : 'No route available.'; }; play(); };
+    document.getElementById('step').onclick = step;
+    document.getElementById('reset').onclick = () => { cancelAnimationFrame(animation); explored.clear(); result = null; eventIndex = 0; document.getElementById('cost').textContent = '—'; document.getElementById('explored').textContent = '0'; document.getElementById('events').innerHTML = ''; document.getElementById('message').textContent = 'View reset.'; draw(); };
+    ['algorithm', 'start', 'goal', 'floor', 'accessible'].forEach(id => controls[id].addEventListener('change', () => { if (id === 'floor') draw(); else document.getElementById('reset').click(); }));
+    window.addEventListener('resize', draw); load().catch(error => document.getElementById('message').textContent = 'Start a local server to load graph.json: ' + error.message);
+  </script>
+</body>
+</html>
