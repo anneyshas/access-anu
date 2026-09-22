@@ -1,19 +1,17 @@
-import mongoose from "mongoose";
+import prismaPackage from "@prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
+
+const { PrismaClient } = prismaPackage;
+
+const connectionString = process.env.DATABASE_URL;
+
+if (!connectionString) {
+	throw new Error("DATABASE_URL is not set");
+}
+
+const adapter = new PrismaPg({ connectionString });
+export const prisma = new PrismaClient({ adapter });
 
 export async function connectDB() {
-  const uri = process.env.MONGODB_URI;
-
-  if (!uri) {
-    throw new Error("MONGODB_URI is not set. Check your .env file.");
-  }
-
-  mongoose.connection.on("connected", () => {
-    console.log("MongoDB connected");
-  });
-
-  mongoose.connection.on("error", (err) => {
-    console.error("MongoDB connection error:", err);
-  });
-
-  await mongoose.connect(uri);
+	await prisma.$connect();
 }
