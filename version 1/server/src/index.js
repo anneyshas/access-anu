@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { connectDB } from "./config/db.js";
+import apiRoutes from "./routes/index.js";   // ← add this line
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -13,6 +14,8 @@ app.use(express.json());
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok" });
 });
+
+app.use("/api", apiRoutes);   // ← add this line
 
 async function start() {
   try {

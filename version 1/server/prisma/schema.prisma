@@ -10,3 +10,28 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model Node {
+  id         String  @id @default(cuid())
+  name       String
+  type       String
+  floor      Int
+  building   String
+  accessible Boolean
+  lat        Float
+  lng        Float
+  outgoing   Edge[]  @relation("OutgoingEdges")
+  incoming   Edge[]  @relation("IncomingEdges")
+}
+
+model Edge {
+  id         String  @id @default(cuid())
+  fromNodeId String
+  toNodeId   String
+  type       String
+  accessible Boolean
+  weight     Float
+  building   String
+  fromNode   Node    @relation("OutgoingEdges", fields: [fromNodeId], references: [id], onDelete: Cascade)
+  toNode     Node    @relation("IncomingEdges", fields: [toNodeId], references: [id], onDelete: Cascade)
+}
