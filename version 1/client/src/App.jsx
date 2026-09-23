@@ -7,7 +7,7 @@ function App() {
   const [selectedBuilding, setSelectedBuilding] = useState(null);
 
   return (
-    <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
+    <div className="relative h-screen w-screen overflow-hidden">
       {selectedBuilding ? (
         <BuildingView
           building={selectedBuilding}

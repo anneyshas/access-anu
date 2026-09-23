@@ -1,0 +1,911 @@
+{
+ "number": 4,
+ "label": "Level 4",
+ "image": {
+  "url": "/floorplans/building-155-level-4.png",
+  "width": 1480,
+  "height": 1272
+ },
+ "layout": {
+  "width": 1480,
+  "height": 1272,
+  "outline": [
+   [
+    130,
+    20
+   ],
+   [
+    1330,
+    20
+   ],
+   [
+    1330,
+    1197
+   ],
+   [
+    130,
+    1197
+   ]
+  ],
+  "spaces": [
+   {
+    "id": "room-401",
+    "kind": "room",
+    "label": "4.01",
+    "node": "R401",
+    "polygon": [
+     [
+      132,
+      22
+     ],
+     [
+      440,
+      22
+     ],
+     [
+      440,
+      330
+     ],
+     [
+      357,
+      330
+     ],
+     [
+      357,
+      315
+     ],
+     [
+      132,
+      315
+     ]
+    ],
+    "doors": [
+     [
+      410,
+      330
+     ]
+    ]
+   },
+   {
+    "id": "room-402",
+    "kind": "room",
+    "label": "4.02",
+    "node": "R402",
+    "polygon": [
+     [
+      440,
+      22
+     ],
+     [
+      730,
+      22
+     ],
+     [
+      730,
+      330
+     ],
+     [
+      440,
+      330
+     ]
+    ],
+    "doors": [
+     [
+      650,
+      330
+     ]
+    ]
+   },
+   {
+    "id": "room-403",
+    "kind": "room",
+    "label": "4.03",
+    "node": "R403",
+    "polygon": [
+     [
+      730,
+      22
+     ],
+     [
+      1017,
+      22
+     ],
+     [
+      1017,
+      330
+     ],
+     [
+      730,
+      330
+     ]
+    ],
+    "doors": [
+     [
+      808,
+      330
+     ]
+    ]
+   },
+   {
+    "id": "stairs-ne",
+    "kind": "stairs",
+    "label": "Stairs",
+    "node": "STAIRS-NE",
+    "polygon": [
+     [
+      1027,
+      53
+     ],
+     [
+      1290,
+      53
+     ],
+     [
+      1290,
+      317
+     ],
+     [
+      1027,
+      317
+     ]
+    ],
+    "doors": [
+     [
+      1240,
+      317
+     ]
+    ]
+   },
+   {
+    "id": "stairs-e",
+    "kind": "stairs",
+    "label": "Stairs",
+    "node": "STAIRS-E",
+    "polygon": [
+     [
+      1190,
+      590
+     ],
+     [
+      1293,
+      590
+     ],
+     [
+      1293,
+      717
+     ],
+     [
+      1190,
+      717
+     ]
+    ],
+    "doors": [
+     [
+      1190,
+      650
+     ]
+    ]
+   },
+   {
+    "id": "stair-a",
+    "kind": "stairwell",
+    "label": "Stairwell A",
+    "node": "STAIR-A",
+    "labelAt": [
+     208,
+     425
+    ],
+    "polygon": [
+     [
+      140,
+      315
+     ],
+     [
+      280,
+      315
+     ],
+     [
+      280,
+      447
+     ],
+     [
+      357,
+      447
+     ],
+     [
+      357,
+      550
+     ],
+     [
+      140,
+      550
+     ]
+    ],
+    "doors": [
+     [
+      357,
+      510
+     ]
+    ]
+   },
+   {
+    "id": "service-a1",
+    "kind": "service",
+    "polygon": [
+     [
+      282,
+      317
+     ],
+     [
+      355,
+      317
+     ],
+     [
+      355,
+      445
+     ],
+     [
+      282,
+      445
+     ]
+    ]
+   },
+   {
+    "id": "service-a2",
+    "kind": "service",
+    "polygon": [
+     [
+      140,
+      552
+     ],
+     [
+      357,
+      552
+     ],
+     [
+      357,
+      610
+     ],
+     [
+      140,
+      610
+     ]
+    ]
+   },
+   {
+    "id": "lift-1",
+    "kind": "lift",
+    "node": "LIFT-1",
+    "polygon": [
+     [
+      434,
+      797
+     ],
+     [
+      552,
+      797
+     ],
+     [
+      552,
+      900
+     ],
+     [
+      434,
+      900
+     ]
+    ],
+    "doors": [
+     [
+      493,
+      797
+     ]
+    ]
+   },
+   {
+    "id": "lift-2",
+    "kind": "lift",
+    "node": "LIFT-2",
+    "polygon": [
+     [
+      554,
+      797
+     ],
+     [
+      674,
+      797
+     ],
+     [
+      674,
+      900
+     ],
+     [
+      554,
+      900
+     ]
+    ],
+    "doors": [
+     [
+      612,
+      797
+     ]
+    ]
+   },
+   {
+    "id": "lift-3",
+    "kind": "lift",
+    "node": "LIFT-3",
+    "polygon": [
+     [
+      676,
+      797
+     ],
+     [
+      795,
+      797
+     ],
+     [
+      795,
+      900
+     ],
+     [
+      676,
+      900
+     ]
+    ],
+    "doors": [
+     [
+      730,
+      797
+     ]
+    ]
+   },
+   {
+    "id": "toilets",
+    "kind": "toilet",
+    "label": "Toilets",
+    "node": "WC",
+    "polygon": [
+     [
+      447,
+      902
+     ],
+     [
+      742,
+      902
+     ],
+     [
+      742,
+      1177
+     ],
+     [
+      447,
+      1177
+     ]
+    ],
+    "doors": [
+     [
+      742,
+      985
+     ]
+    ]
+   },
+   {
+    "id": "stair-b",
+    "kind": "stairwell",
+    "label": "Stairwell B",
+    "node": "STAIR-B",
+    "polygon": [
+     [
+      1013,
+      887
+     ],
+     [
+      1322,
+      887
+     ],
+     [
+      1322,
+      1017
+     ],
+     [
+      1013,
+      1017
+     ]
+    ],
+    "doors": [
+     [
+      1013,
+      985
+     ]
+    ]
+   },
+   {
+    "id": "service-b",
+    "kind": "service",
+    "polygon": [
+     [
+      1013,
+      1019
+     ],
+     [
+      1322,
+      1019
+     ],
+     [
+      1322,
+      1057
+     ],
+     [
+      1013,
+      1057
+     ]
+    ]
+   },
+   {
+    "id": "room-404",
+    "kind": "room",
+    "label": "4.04",
+    "node": "R404",
+    "polygon": [
+     [
+      1167,
+      1060
+     ],
+     [
+      1323,
+      1060
+     ],
+     [
+      1323,
+      1193
+     ],
+     [
+      1167,
+      1193
+     ]
+    ],
+    "doors": [
+     [
+      1167,
+      1100
+     ]
+    ]
+   }
+  ],
+  "columns": [
+   [
+    140,
+    30,
+    20,
+    20
+   ],
+   [
+    430,
+    30,
+    20,
+    20
+   ],
+   [
+    720,
+    30,
+    20,
+    20
+   ],
+   [
+    1010,
+    30,
+    20,
+    20
+   ],
+   [
+    1300,
+    30,
+    20,
+    20
+   ],
+   [
+    430,
+    312,
+    20,
+    20
+   ],
+   [
+    720,
+    312,
+    20,
+    20
+   ],
+   [
+    1010,
+    312,
+    20,
+    20
+   ],
+   [
+    1300,
+    312,
+    20,
+    20
+   ],
+   [
+    430,
+    595,
+    20,
+    20
+   ],
+   [
+    720,
+    595,
+    20,
+    20
+   ],
+   [
+    1010,
+    595,
+    20,
+    20
+   ],
+   [
+    1300,
+    595,
+    20,
+    20
+   ],
+   [
+    140,
+    880,
+    20,
+    20
+   ],
+   [
+    140,
+    1165,
+    20,
+    20
+   ],
+   [
+    430,
+    1165,
+    20,
+    20
+   ],
+   [
+    720,
+    1165,
+    20,
+    20
+   ],
+   [
+    1010,
+    1165,
+    20,
+    20
+   ],
+   [
+    1300,
+    1165,
+    20,
+    20
+   ]
+  ],
+  "entrances": []
+ },
+ "nodes": [
+  {
+   "id": "STAIR-A",
+   "name": "Stairwell A",
+   "type": "stair",
+   "accessible": false,
+   "pixelX": 210,
+   "pixelY": 470
+  },
+  {
+   "id": "STAIR-B",
+   "name": "Stairwell B",
+   "type": "stair",
+   "accessible": false,
+   "pixelX": 1170,
+   "pixelY": 955
+  },
+  {
+   "id": "LIFT-1",
+   "name": "Lift 1",
+   "type": "lift",
+   "accessible": true,
+   "pixelX": 493,
+   "pixelY": 848
+  },
+  {
+   "id": "LIFT-2",
+   "name": "Lift 2",
+   "type": "lift",
+   "accessible": true,
+   "pixelX": 613,
+   "pixelY": 848
+  },
+  {
+   "id": "LIFT-3",
+   "name": "Lift 3",
+   "type": "lift",
+   "accessible": true,
+   "pixelX": 733,
+   "pixelY": 848
+  },
+  {
+   "id": "STAIRS-NE",
+   "name": "Stairs (North-East)",
+   "type": "stair",
+   "accessible": false,
+   "pixelX": 1240,
+   "pixelY": 250
+  },
+  {
+   "id": "STAIRS-E",
+   "name": "Stairs (East)",
+   "type": "stair",
+   "accessible": false,
+   "pixelX": 1240,
+   "pixelY": 650
+  },
+  {
+   "id": "R401",
+   "name": "Room 4.01",
+   "type": "room",
+   "accessible": true,
+   "pixelX": 380,
+   "pixelY": 170
+  },
+  {
+   "id": "R402",
+   "name": "Room 4.02",
+   "type": "room",
+   "accessible": true,
+   "pixelX": 650,
+   "pixelY": 170
+  },
+  {
+   "id": "R403",
+   "name": "Room 4.03",
+   "type": "room",
+   "accessible": true,
+   "pixelX": 808,
+   "pixelY": 170
+  },
+  {
+   "id": "R404",
+   "name": "Room 4.04",
+   "type": "room",
+   "accessible": true,
+   "pixelX": 1245,
+   "pixelY": 1127
+  },
+  {
+   "id": "WC",
+   "name": "Toilets",
+   "type": "wc",
+   "accessible": true,
+   "pixelX": 620,
+   "pixelY": 985
+  },
+  {
+   "id": "CORR-NW",
+   "name": "North-West Hall",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 410,
+   "pixelY": 390
+  },
+  {
+   "id": "CORR-N",
+   "name": "North Hall",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 650,
+   "pixelY": 390
+  },
+  {
+   "id": "CORR-N2",
+   "name": "North Hall (East)",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 808,
+   "pixelY": 390
+  },
+  {
+   "id": "CORR-NE",
+   "name": "North-East Hall",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 1240,
+   "pixelY": 390
+  },
+  {
+   "id": "CORR-W",
+   "name": "West Hall",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 400,
+   "pixelY": 520
+  },
+  {
+   "id": "CORR-SW",
+   "name": "South-West Hall",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 300,
+   "pixelY": 960
+  },
+  {
+   "id": "CORR-LIFT",
+   "name": "Lift Lobby",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 613,
+   "pixelY": 720
+  },
+  {
+   "id": "CORR-EAST",
+   "name": "East Hall (Middle)",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 1100,
+   "pixelY": 650
+  },
+  {
+   "id": "CORR-E",
+   "name": "East Hall",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 940,
+   "pixelY": 985
+  },
+  {
+   "id": "CORR-SE",
+   "name": "South-East Hall",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 1010,
+   "pixelY": 1110
+  }
+ ],
+ "edges": [
+  {
+   "fromId": "CORR-NW",
+   "toId": "R401",
+   "type": "door",
+   "accessible": true
+  },
+  {
+   "fromId": "CORR-N",
+   "toId": "R402",
+   "type": "door",
+   "accessible": true
+  },
+  {
+   "fromId": "CORR-N2",
+   "toId": "R403",
+   "type": "door",
+   "accessible": true
+  },
+  {
+   "fromId": "CORR-NE",
+   "toId": "STAIRS-NE",
+   "type": "stairs",
+   "accessible": false
+  },
+  {
+   "fromId": "CORR-NW",
+   "toId": "CORR-N",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "CORR-N",
+   "toId": "CORR-N2",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "CORR-N2",
+   "toId": "CORR-NE",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "CORR-NW",
+   "toId": "CORR-W",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "CORR-W",
+   "toId": "STAIR-A",
+   "type": "fire_door",
+   "accessible": false
+  },
+  {
+   "fromId": "CORR-W",
+   "toId": "CORR-SW",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "CORR-W",
+   "toId": "CORR-LIFT",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "CORR-LIFT",
+   "toId": "LIFT-1",
+   "type": "door",
+   "accessible": true
+  },
+  {
+   "fromId": "CORR-LIFT",
+   "toId": "LIFT-2",
+   "type": "door",
+   "accessible": true
+  },
+  {
+   "fromId": "CORR-LIFT",
+   "toId": "LIFT-3",
+   "type": "door",
+   "accessible": true
+  },
+  {
+   "fromId": "CORR-LIFT",
+   "toId": "CORR-N",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "CORR-N2",
+   "toId": "CORR-EAST",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "CORR-NE",
+   "toId": "CORR-EAST",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "CORR-EAST",
+   "toId": "STAIRS-E",
+   "type": "stairs",
+   "accessible": false
+  },
+  {
+   "fromId": "CORR-EAST",
+   "toId": "CORR-E",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "CORR-E",
+   "toId": "STAIR-B",
+   "type": "fire_door",
+   "accessible": false
+  },
+  {
+   "fromId": "CORR-E",
+   "toId": "WC",
+   "type": "door",
+   "accessible": true
+  },
+  {
+   "fromId": "CORR-E",
+   "toId": "CORR-SE",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "CORR-SE",
+   "toId": "R404",
+   "type": "door",
+   "accessible": true
+  }
+ ]
+}

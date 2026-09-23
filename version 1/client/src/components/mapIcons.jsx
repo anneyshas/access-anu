@@ -40,10 +40,29 @@ const ICONS = {
       <path d="M20.5 12H10.5M16.5 8l4 4-4 4" />
     </g>
   ),
+  room: (
+    <g {...P}>
+      <path d="M6 20.5V4.5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v16M3.5 20.5h17" />
+      <circle cx="14.5" cy="12.5" r="1" fill="white" stroke="none" />
+    </g>
+  ),
 };
 
 export function MapIcon({ name }) {
   const icon = ICONS[name];
   if (!icon) return null;
   return <g transform="translate(-12 -12)">{icon}</g>;
+}
+
+// The same icons as a small coloured circle, for use in regular HTML (search
+// results, place card).
+export function IconBadge({ name, color, size = 32 }) {
+  return (
+    <svg width={size} height={size} viewBox="-16 -16 32 32" aria-hidden="true" className="shrink-0">
+      <circle r="16" fill={color} />
+      <g transform="scale(0.8)">
+        <MapIcon name={name} />
+      </g>
+    </svg>
+  );
 }

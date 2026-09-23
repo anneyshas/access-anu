@@ -1,0 +1,184 @@
+{
+ "name": "Building 155 (Marie Reay Teaching Centre)",
+ "lat": -35.277588,
+ "lng": 149.120508,
+ "metresPerPixel": 0.035,
+ "floors": [
+  "level-1.json",
+  "level-2.json",
+  "level-3.json",
+  "level-4.json",
+  "level-5.json"
+ ],
+ "_verticalEdges": "Connections between floors, as \"<floor>:<node id>\". Weight = rough metres-equivalent per floor (lift includes waiting).",
+ "verticalEdges": [
+  {
+   "from": "1:LIFT-1",
+   "to": "2:LIFT-1",
+   "type": "lift",
+   "accessible": true,
+   "weight": 10
+  },
+  {
+   "from": "1:LIFT-2",
+   "to": "2:LIFT-2",
+   "type": "lift",
+   "accessible": true,
+   "weight": 10
+  },
+  {
+   "from": "1:LIFT-3",
+   "to": "2:LIFT-3",
+   "type": "lift",
+   "accessible": true,
+   "weight": 10
+  },
+  {
+   "from": "1:STAIR-A",
+   "to": "2:STAIR-A",
+   "type": "stairs",
+   "accessible": false,
+   "weight": 8
+  },
+  {
+   "from": "1:STAIR-B",
+   "to": "2:STAIR-B",
+   "type": "stairs",
+   "accessible": false,
+   "weight": 8
+  },
+  {
+   "from": "2:LIFT-1",
+   "to": "3:LIFT-1",
+   "type": "lift",
+   "accessible": true,
+   "weight": 10
+  },
+  {
+   "from": "2:LIFT-2",
+   "to": "3:LIFT-2",
+   "type": "lift",
+   "accessible": true,
+   "weight": 10
+  },
+  {
+   "from": "2:LIFT-3",
+   "to": "3:LIFT-3",
+   "type": "lift",
+   "accessible": true,
+   "weight": 10
+  },
+  {
+   "from": "2:STAIR-A",
+   "to": "3:STAIR-A",
+   "type": "stairs",
+   "accessible": false,
+   "weight": 8
+  },
+  {
+   "from": "2:STAIR-B",
+   "to": "3:STAIR-B",
+   "type": "stairs",
+   "accessible": false,
+   "weight": 8
+  },
+  {
+   "from": "3:LIFT-1",
+   "to": "4:LIFT-1",
+   "type": "lift",
+   "accessible": true,
+   "weight": 10
+  },
+  {
+   "from": "3:LIFT-2",
+   "to": "4:LIFT-2",
+   "type": "lift",
+   "accessible": true,
+   "weight": 10
+  },
+  {
+   "from": "3:LIFT-3",
+   "to": "4:LIFT-3",
+   "type": "lift",
+   "accessible": true,
+   "weight": 10
+  },
+  {
+   "from": "3:STAIR-A",
+   "to": "4:STAIR-A",
+   "type": "stairs",
+   "accessible": false,
+   "weight": 8
+  },
+  {
+   "from": "3:STAIR-B",
+   "to": "4:STAIR-B",
+   "type": "stairs",
+   "accessible": false,
+   "weight": 8
+  },
+  {
+   "from": "4:LIFT-1",
+   "to": "5:LIFT-1",
+   "type": "lift",
+   "accessible": true,
+   "weight": 10
+  },
+  {
+   "from": "4:LIFT-2",
+   "to": "5:LIFT-2",
+   "type": "lift",
+   "accessible": true,
+   "weight": 10
+  },
+  {
+   "from": "4:LIFT-3",
+   "to": "5:LIFT-3",
+   "type": "lift",
+   "accessible": true,
+   "weight": 10
+  },
+  {
+   "from": "4:STAIR-A",
+   "to": "5:STAIR-A",
+   "type": "stairs",
+   "accessible": false,
+   "weight": 8
+  },
+  {
+   "from": "4:STAIR-B",
+   "to": "5:STAIR-B",
+   "type": "stairs",
+   "accessible": false,
+   "weight": 8
+  },
+  {
+   "from": "1:STAIRS-L",
+   "to": "2:STAIRS-L",
+   "type": "stairs",
+   "accessible": false,
+   "weight": 8
+  },
+  {
+   "from": "2:STAIRS-N",
+   "to": "3:STAIRS-N",
+   "type": "stairs",
+   "accessible": false,
+   "weight": 8
+  },
+  {
+   "from": "3:STAIRS-NE",
+   "to": "4:STAIRS-NE",
+   "type": "stairs",
+   "accessible": false,
+   "weight": 8
+  },
+  {
+   "from": "4:STAIRS-E",
+   "to": "5:STAIRS-E",
+   "type": "stairs",
+   "accessible": false,
+   "weight": 8
+  }
+ ]
+}
