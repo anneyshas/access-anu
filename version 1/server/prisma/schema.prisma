@@ -1,7 +1,7 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
+// AccessANU — Prisma schema
+// Node/Edge: rooms/corridors/stairs/lifts on a floor, and connections between them.
+// Building/Floor: metadata about each building and its floor plan images —
+// separate from Node/Edge so a building/floor can exist before any rooms do.
 
 generator client {
   provider = "prisma-client-js"
@@ -9,29 +9,102 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+
+}
+
+enum NodeType {
+  room
+  corridor
+  stair
+  lift
+  wc
+  service
+}
+
+enum EdgeType {
+  door
+  passage
+  fire_door
+  lift
+  stairs
 }
 
 model Node {
-  id         String  @id @default(cuid())
+  id         String   @id @default(cuid())
   name       String
-  type       String
+  type       NodeType
   floor      Int
   building   String
   accessible Boolean
-  lat        Float
-  lng        Float
-  outgoing   Edge[]  @relation("OutgoingEdges")
-  incoming   Edge[]  @relation("IncomingEdges")
+
+  // Position on the floor plan IMAGE, in pixels — clicked directly on the
+  // floor plan, not real-world GPS. The indoor view renders the floor plan
+  // as a plain image with nodes/edges drawn on top at these coordinates.
+  pixelX     Float
+  pixelY     Float
+
+  // Optional room outline for rendering the room as a shape rather than a point
+  polygon    Json?
+
+  edgesFrom  Edge[]   @relation("EdgeFrom")
+  edgesTo    Edge[]   @relation("EdgeTo")
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([building, floor])
 }
 
 model Edge {
-  id         String  @id @default(cuid())
-  fromNodeId String
-  toNodeId   String
-  type       String
-  accessible Boolean
-  weight     Float
-  building   String
-  fromNode   Node    @relation("OutgoingEdges", fields: [fromNodeId], references: [id], onDelete: Cascade)
-  toNode     Node    @relation("IncomingEdges", fields: [toNodeId], references: [id], onDelete: Cascade)
+  id            Int      @id @default(autoincrement())
+  fromNodeId    String
+  toNodeId      String
+  type          EdgeType
+  accessible    Boolean  // false for ALL stair edges — this is what Accessibility Mode filters on
+  weight        Float    // approx metres, used as the pathfinding edge weight
+  bidirectional Boolean  @default(true)
+  building      String
+
+  fromNode      Node     @relation("EdgeFrom", fields: [fromNodeId], references: [id])
+  toNode        Node     @relation("EdgeTo", fields: [toNodeId], references: [id])
+
+  createdAt     DateTime @default(now())
+
+  @@index([building])
+}
+
+model Building {
+  id     String  @id @default(cuid())
+  name   String  @unique // matches the `building` string on Node/Edge
+  // One real-world point, just for placing this building's marker on the
+  // outer campus map. Nothing indoor uses real coordinates anymore.
+  lat    Float?
+  lng    Float?
+  floors Floor[]
+}
+
+model Floor {
+  id         String   @id @default(cuid())
+  buildingId String
+  building   Building @relation(fields: [buildingId], references: [id])
+  number     Int
+  label      String? // "Level 1", "Ground Floor"
+
+  // The floor plan image shown in the indoor view. imageWidth/imageHeight
+  // are the image's actual pixel dimensions — the frontend uses them to
+  // scale Node pixelX/pixelY correctly if the image is displayed at a
+  // different size than its original resolution.
+  imageUrl    String?
+  imageWidth  Int?
+  imageHeight Int?
+
+  // Vector map of the floor, in the same pixel space as the image and the
+  // nodes: { width, height, outline, spaces[{ kind, label, polygon, nodeId }],
+  // columns, entrances }. The indoor view draws this as the map; the image
+  // is kept as a reference for tracing new floors.
+  layout      Json?
+
+  createdAt DateTime @default(now())
+
+  @@unique([buildingId, number])
 }
