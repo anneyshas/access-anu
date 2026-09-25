@@ -1,5 +1,5 @@
 import { prisma } from "../config/prisma.js";
-import { shortestPath, describeRoute } from "../services/pathfinding.js";
+import { shortestPath, describeRoute } from "../services.js/pathfinding.js";
 
 // GET /api/route?from=<nodeId>&to=<nodeId>&accessible=true|false
 // Shortest route between two nodes anywhere in the same building (across

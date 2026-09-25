@@ -795,7 +795,7 @@
   },
   {
    "id": "EXIT-W",
-   "name": "Final Exit (West)",
+   "name": "West Entrance",
    "type": "service",
    "accessible": true,
    "pixelX": 140,
@@ -803,7 +803,7 @@
   },
   {
    "id": "EXIT-SE",
-   "name": "Final Exit (South-East)",
+   "name": "East Entrance",
    "type": "service",
    "accessible": true,
    "pixelX": 1325,

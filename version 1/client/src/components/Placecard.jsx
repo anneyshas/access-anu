@@ -1,12 +1,12 @@
 import Icon from "./icons";
-import { IconBadge } from "./MapIcons";
+import { IconBadge } from "./mapIcons";
 import { KIND_INFO } from "../places";
 
 /**
  * Details for the selected place — bottom sheet on phones, floating card on
  * larger screens (like the place panel in Google Maps).
  */
-export default function PlaceCard({ place, buildingName, onClose }) {
+export default function PlaceCard({ place, buildingName, onClose, onDirections }) {
   if (!place) return null;
   const info = KIND_INFO[place.kind];
 
@@ -46,13 +46,11 @@ export default function PlaceCard({ place, buildingName, onClose }) {
 
       <div className="mt-4 flex gap-2">
         <button
-          disabled
-          title="Pathfinding is the next step — coming soon"
-          className="flex h-9 items-center gap-2 rounded-full bg-map-blue px-4 text-[14px] font-medium text-white opacity-60"
+          onClick={() => onDirections(place)}
+          className="flex h-9 items-center gap-2 rounded-full bg-map-blue px-4 text-[14px] font-medium text-white hover:bg-[#1765cc]"
         >
           <Icon name="directions" className="size-[18px]" /> Directions
         </button>
-        <span className="self-center text-[12px] text-map-muted">Routing coming soon</span>
       </div>
     </div>
   );

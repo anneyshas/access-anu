@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import Icon from "./icons";
-import { IconBadge } from "./MapIcons";
+import { IconBadge } from "./mapIcons";
 import { CATEGORIES, KIND_INFO, searchPlaces } from "../places";
 
 /**

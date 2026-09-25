@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { MapIcon } from "./MapIcons";
+import { MapIcon } from "./mapIcons";
 import Icon from "./icons";
 import { isClosed, isSelectable } from "../places";
 
@@ -72,6 +72,60 @@ function doorAngle(polygon, [x, y]) {
 }
 const toPoints = (poly) => poly.map((p) => p.join(",")).join(" ");
 
+// The part of a route on one floor: polylines to draw, the start/end markers
+// and "change floor" badges. At a room, the line stops at its door mark and
+// a dotted tail continues to the room's pin.
+function routeOnFloor(route, floor, layout) {
+  const out = { lines: [], start: null, end: null, jumps: [] };
+  if (!route || route.error || !route.legs) return out;
+  const spaceByNode = new Map((layout?.spaces ?? []).filter((sp) => sp.nodeId).map((sp) => [sp.nodeId, sp]));
+  const nearest = (doors, [x, y]) => doors.reduce((a, d) => (Math.hypot(d[0] - x, d[1] - y) < Math.hypot(a[0] - x, a[1] - y) ? d : a));
+  const legs = route.legs;
+
+  legs.forEach((leg, li) => {
+    if (leg.floor !== floor) return;
+    const pts = leg.points.map((p) => [p.x, p.y]);
+    const tails = [];
+    const first = leg.points[0];
+    const last = leg.points[leg.points.length - 1];
+
+    if (li === 0) {
+      out.start = pts[0];
+      const sp = spaceByNode.get(first.nodeId);
+      if (sp?.doors?.length && pts.length > 1) {
+        const door = nearest(sp.doors, pts[1]);
+        tails.push([pts[0], door]);
+        pts[0] = door;
+      }
+    }
+    if (li === legs.length - 1) {
+      out.end = pts[pts.length - 1];
+      const sp = spaceByNode.get(last.nodeId);
+      if (sp?.doors?.length && pts.length > 1) {
+        const door = nearest(sp.doors, pts[pts.length - 2]);
+        tails.push([door, pts[pts.length - 1]]);
+        pts[pts.length - 1] = door;
+      }
+    }
+    if (pts.length > 1 || tails.length) out.lines.push({ points: pts, tails });
+
+    // Floors you only ride through (a lift passing Levels 2-4) are skipped:
+    // the badge points to where you get out / where you got on.
+    const passThrough = (k) => legs[k].points.length === 1 && k > 0 && k < legs.length - 1;
+    if (li < legs.length - 1 && !passThrough(li)) {
+      let k = li + 1;
+      while (passThrough(k)) k += 1;
+      out.jumps.push({ x: last.x, y: last.y, toFloor: legs[k].floor, kind: last.type === "lift" ? "lift" : "stairs", name: last.name });
+    }
+    if (li > 0 && !passThrough(li)) {
+      let k = li - 1;
+      while (passThrough(k)) k -= 1;
+      out.jumps.push({ x: first.x, y: first.y, toFloor: legs[k].floor, kind: first.type === "lift" ? "lift" : "stairs", name: first.name, arriving: true });
+    }
+  });
+  return out;
+}
+
 function scaleBar(metresPerPixel, zoom) {
   if (!metresPerPixel) return null;
   for (const m of [1, 2, 5, 10, 20, 50, 100]) {
@@ -96,8 +150,25 @@ function scaleBar(metresPerPixel, zoom) {
  *   highlight   array of space kinds to highlight (category chips)
  *   focusKey    change this to zoom the map onto `selectedId`
  *   onSelect    (spaceId | null) => void, when a place is tapped
+ *   floorNumber the floor being shown (to pick this floor's part of a route)
+ *   route       route from /api/route, or null — drawn as a blue line
+ *   onFloorJump (floor) => void, from the "Lift -> Level N" badges
+ *   focusBox    { key, x0, y0, x1, y1 } — change key to zoom onto that box
  */
-export default function FloorMap({ layout, image, graph, showImage, selectedId, highlight = [], focusKey, onSelect }) {
+export default function FloorMap({
+  layout,
+  image,
+  graph,
+  showImage,
+  selectedId,
+  highlight = [],
+  focusKey,
+  onSelect,
+  floorNumber,
+  route,
+  onFloorJump,
+  focusBox,
+}) {
   const svgRef = useRef(null);
   const [size, setSize] = useState({ w: 0, h: 0 });
   const [view, setView] = useState(null); // { s, tx, ty }
@@ -187,6 +258,24 @@ export default function FloorMap({ layout, image, graph, showImage, selectedId, 
     animateTo({ s, tx: sx - cx * s, ty: sy - cy * s });
   }, [focusKey]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Zoom onto a box (e.g. this floor's part of a route), leaving room for the
+  // directions panel on wide screens.
+  useEffect(() => {
+    if (!focusBox || !size.w) return;
+    const padL = size.w >= 900 ? 440 : 24;
+    const padT = size.w >= 900 ? 40 : Math.min(300, size.h * 0.4);
+    const padR = 84; // level picker + zoom buttons live on the right
+    const padB = 60;
+    const aw = Math.max(100, size.w - padL - padR);
+    const ah = Math.max(100, size.h - padT - padB);
+    const bw = Math.max(80, focusBox.x1 - focusBox.x0);
+    const bh = Math.max(80, focusBox.y1 - focusBox.y0);
+    const s = Math.min(Math.max(Math.min(aw / bw, ah / bh) * 0.85, fitScale * 0.9), fitScale * 1.8);
+    const cx = (focusBox.x0 + focusBox.x1) / 2;
+    const cy = (focusBox.y0 + focusBox.y1) / 2;
+    animateTo({ s, tx: padL + aw / 2 - cx * s, ty: padT + ah / 2 - cy * s });
+  }, [focusBox?.key]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const zoomAt = useCallback(
     (factor, mx, my) => {
       cancelAnimationFrame(anim.current);
@@ -240,6 +329,7 @@ export default function FloorMap({ layout, image, graph, showImage, selectedId, 
   const k = 1 / s; // multiply by k to draw at a fixed on-screen size
   const bar = scaleBar(layout?.metresPerPixel, s);
   const selected = layout?.spaces.find((x) => x.id === selectedId);
+  const routeParts = useMemo(() => routeOnFloor(route, floorNumber, layout), [route, floorNumber, layout]);
 
   return (
     <div className="absolute inset-0">
@@ -341,6 +431,23 @@ export default function FloorMap({ layout, image, graph, showImage, selectedId, 
               );
             })}
 
+            {/* Route: blue line with a white casing, like Google Maps */}
+            {routeParts.lines.map((ln, i) => (
+              <g key={`route-${i}`} style={{ pointerEvents: "none" }}>
+                <polyline points={toPoints(ln.points)} fill="none" stroke="white" strokeWidth={10} strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+                <polyline points={toPoints(ln.points)} fill="none" stroke={C.blue} strokeWidth={6} strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+                {ln.tails.map((t, j) => (
+                  <polyline key={j} points={toPoints(t)} fill="none" stroke={C.blue} strokeWidth={3} strokeDasharray="1 7" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+                ))}
+              </g>
+            ))}
+            {routeParts.start && (
+              <g transform={`translate(${routeParts.start[0]} ${routeParts.start[1]}) scale(${k})`} style={{ pointerEvents: "none" }}>
+                <circle r={9} fill="white" stroke="#5f6368" strokeWidth={1} />
+                <circle r={5.5} fill="none" stroke="#202124" strokeWidth={2.5} />
+              </g>
+            )}
+
             {/* Labels + icons (fixed on-screen size; text appears as you zoom in) */}
             {layout?.spaces.map((sp) => {
               const st = styleFor(sp);
@@ -413,9 +520,10 @@ export default function FloorMap({ layout, image, graph, showImage, selectedId, 
               </g>
             )}
 
-            {/* Pin on the selected place (Google-Maps-style red marker) */}
-            {selected && (() => {
-              const [px, py] = labelPoint(selected);
+            {/* Pin: at the route's end when showing directions, else on the
+                selected place (Google-Maps-style red marker) */}
+            {(route ? routeParts.end : selected) && (() => {
+              const [px, py] = route ? routeParts.end : labelPoint(selected);
               return (
                 // Pin tip sits just above the room's label so the name stays readable.
                 <g transform={`translate(${px} ${py}) scale(${k}) translate(0 -12)`} style={{ pointerEvents: "none" }}>
@@ -428,6 +536,23 @@ export default function FloorMap({ layout, image, graph, showImage, selectedId, 
           </g>
         )}
       </svg>
+
+      {/* "Lift 2 → Level 5" badges where the route changes floor (HTML so
+          they're easy to tap); clicking shows the other floor. */}
+      {view &&
+        routeParts.jumps.map((j, i) => (
+          <button
+            key={`jump-${i}`}
+            onClick={() => onFloorJump?.(j.toFloor)}
+            onPointerDown={(e) => e.stopPropagation()}
+            className="absolute z-10 flex -translate-x-1/2 translate-y-[-150%] items-center gap-1 rounded-full bg-map-blue py-1 pr-2.5 pl-1.5 text-[12px] font-medium whitespace-nowrap text-white shadow-map hover:bg-[#1765cc]"
+            style={{ left: view.tx + j.x * s, top: view.ty + j.y * s }}
+            title={`Show Level ${j.toFloor}`}
+          >
+            <Icon name={j.kind === "lift" ? "lift" : "stairs"} className="size-4" />
+            {j.arriving ? `From Level ${j.toFloor}` : `${j.name} → Level ${j.toFloor}`}
+          </button>
+        ))}
 
       {/* Zoom controls */}
       <div className="absolute right-3 bottom-6 z-20 flex flex-col overflow-hidden rounded-lg bg-white shadow-map sm:right-4">

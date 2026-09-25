@@ -2,7 +2,19 @@
  "name": "Building 155 (Marie Reay Teaching Centre)",
  "lat": -35.277588,
  "lng": 149.120508,
- "metresPerPixel": 0.035,
+ "metresPerPixel": 0.02969,
+ "georeference": {
+  "anchor": [
+   730,
+   608
+  ],
+  "lngLat": [
+   149.1205221,
+   -35.277587
+  ],
+  "rotation": 36.5,
+  "note": "Calibrated against the satellite map with ?calibrate=1 (Sept 2026)."
+ },
  "floors": [
   "level-1.json",
   "level-2.json",

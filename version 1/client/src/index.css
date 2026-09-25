@@ -39,3 +39,11 @@ body {
   stroke-width: 4px;
   stroke-linejoin: round;
 }
+
+/* Phones: the bottom sheet covers the map's zoom buttons while navigating, so hide them
+   (pinch-zoom still works). */
+@media (max-width: 639px) {
+  .navigating .mapboxgl-ctrl-bottom-right {
+    display: none;
+  }
+}

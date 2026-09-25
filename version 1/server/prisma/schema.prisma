@@ -9,7 +9,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-
 }
 
 enum NodeType {
@@ -76,11 +75,17 @@ model Edge {
 model Building {
   id     String  @id @default(cuid())
   name   String  @unique // matches the `building` string on Node/Edge
-  // One real-world point, just for placing this building's marker on the
-  // outer campus map. Nothing indoor uses real coordinates anymore.
-  lat    Float?
-  lng    Float?
-  floors Floor[]
+  // One real-world point for the building's marker on the campus map.
+  lat          Float?
+  lng          Float?
+  // Pins the floor-plan pixel space to the real world:
+  // { anchor: [x, y], lngLat: [lng, lat], rotation: degrees }
+  // `anchor` is a pixel on the plan, `lngLat` is where it is on Earth, and
+  // `rotation` is the compass bearing the plan's "up" points to. With the
+  // floor's metresPerPixel this converts any pixel <-> lat/lng (entrances
+  // for outdoor navigation now, indoor positioning later).
+  georeference Json?
+  floors       Floor[]
 }
 
 model Floor {

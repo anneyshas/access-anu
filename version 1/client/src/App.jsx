@@ -2,19 +2,18 @@ import { useState } from "react";
 import CampusView from "./components/CampusView";
 import BuildingView from "./components/BuildingView";
 
-// Two-level UX: outer campus map -> click a building -> indoor floor view.
+// Two-level UX: outdoor campus map <-> indoor building view.
+// `intent` carries what to do on arrival inside (e.g. directions from the
+// entrance you walked to, to the room you searched for on the campus map).
 function App() {
-  const [selectedBuilding, setSelectedBuilding] = useState(null);
+  const [indoor, setIndoor] = useState(null); // { building, intent } | null
 
   return (
     <div className="relative h-screen w-screen overflow-hidden">
-      {selectedBuilding ? (
-        <BuildingView
-          building={selectedBuilding}
-          onBack={() => setSelectedBuilding(null)}
-        />
+      {indoor ? (
+        <BuildingView building={indoor.building} intent={indoor.intent} onBack={() => setIndoor(null)} />
       ) : (
-        <CampusView onSelectBuilding={setSelectedBuilding} />
+        <CampusView onEnterBuilding={(building, intent) => setIndoor({ building, intent })} />
       )}
     </div>
   );

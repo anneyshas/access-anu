@@ -30,8 +30,8 @@ async function seedBuilding(dirName) {
  
   const building = await prisma.building.upsert({
     where: { name: b.name },
-    update: { lat: b.lat, lng: b.lng },
-    create: { name: b.name, lat: b.lat, lng: b.lng },
+    update: { lat: b.lat, lng: b.lng, georeference: b.georeference ?? undefined },
+    create: { name: b.name, lat: b.lat, lng: b.lng, georeference: b.georeference ?? undefined },
   });
  
   const idMap = {}; // "<floor>:<short id>" -> database id
@@ -136,4 +136,3 @@ main()
     process.exit(1);
   })
   .finally(() => prisma.$disconnect());
- 
