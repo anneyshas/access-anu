@@ -1,8 +1,9 @@
 // Outdoor navigation to a place inside a building.
 //
-//  1. Plan: for every main entrance of the building, get a Mapbox walking
-//     route (outside) and an AccessANU route (inside, step-free and fastest),
-//     then pick the entrance with the lowest total time.
+//  1. Plan: as soon as a room is chosen, fetch the indoor routes from every
+//     main entrance in the background (step-free and fastest). Separately get
+//     a Mapbox walking route to each entrance, then pick the entrance with the
+//     lowest total time. The outdoor route never waits for the indoor one.
 //  2. Navigate: follow a live position (phone GPS, or a simulated walk for
 //     demos), show the next turn, re-route if the user leaves the path.
 //  3. Arrive: near the chosen entrance -> phase "arrived"; the caller then
@@ -31,7 +32,8 @@ function withTail(route, entrance) {
 }
 
 export default function useOutdoorNav({ dest, origin, stepFree }) {
-  const [plans, setPlans] = useState(null); // [{ entrance, outdoor, indoor: { stepFree, fastest } }]
+  const [outdoor, setOutdoor] = useState(null); // [{ entrance, outdoor }]
+  const [indoor, setIndoor] = useState({}); // entrance nodeId -> { stepFree, fastest } (fetched in the background)
   const [planning, setPlanning] = useState(false);
   const [error, setError] = useState(null);
 
@@ -43,12 +45,34 @@ export default function useOutdoorNav({ dest, origin, stepFree }) {
   const lastReroute = useRef(0);
   const offCount = useRef(0);
 
-  // ---- 1. plan ------------------------------------------------------------
-  const destKey = dest ? `${dest.place.key}|${dest.entrances.map((e) => e.lngLat.join(",")).join(";")}` : null;
+  const destKey = dest ? `${dest.place.key}|${dest.entrances.map((e) => `${e.nodeId}@${e.lngLat.join(",")}`).join(";")}` : null;
+  const indoorKey = dest ? `${dest.place.nodeId}|${dest.entrances.map((e) => e.nodeId).join(",")}` : null;
   const originKey = origin ? origin.lngLat.map((v) => v.toFixed(6)).join(",") : null;
 
+  // ---- 1a. indoor routes: start as soon as a destination is chosen --------
+  // They don't depend on where you are, so they load in the background while
+  // the outdoor route is found (and are handed to the indoor map on arrival).
   useEffect(() => {
-    setPlans(null);
+    setIndoor({});
+    if (!dest) return;
+    let cancelled = false;
+    for (const entrance of dest.entrances) {
+      Promise.all([
+        fetchRoute(entrance.nodeId, dest.place.nodeId, true).catch((e) => ({ error: e.message })),
+        fetchRoute(entrance.nodeId, dest.place.nodeId, false).catch((e) => ({ error: e.message })),
+      ]).then(([sf, fast]) => {
+        if (!cancelled) setIndoor((all) => ({ ...all, [entrance.nodeId]: { stepFree: sf, fastest: fast } }));
+      });
+    }
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [indoorKey]);
+
+  // ---- 1b. outdoor walking routes to every entrance ------------------------
+  useEffect(() => {
+    setOutdoor(null);
     setError(null);
     setPhase("preview");
     setSource(null);
@@ -63,17 +87,13 @@ export default function useOutdoorNav({ dest, origin, stepFree }) {
     setPlanning(true);
     Promise.all(
       dest.entrances.map(async (entrance) => {
-        const [outdoor, sf, fast] = await Promise.all([
-          fetchWalkingRoute(origin.lngLat, entrance.lngLat, { signal: ctrl.signal }).catch((e) => ({ error: e.message })),
-          fetchRoute(entrance.nodeId, dest.place.nodeId, true).catch((e) => ({ error: e.message })),
-          fetchRoute(entrance.nodeId, dest.place.nodeId, false).catch((e) => ({ error: e.message })),
-        ]);
-        return { entrance, outdoor: outdoor.error ? outdoor : withTail(outdoor, entrance), indoor: { stepFree: sf, fastest: fast } };
+        const route = await fetchWalkingRoute(origin.lngLat, entrance.lngLat, { signal: ctrl.signal }).catch((e) => ({ error: e.message }));
+        return { entrance, outdoor: route.error ? route : withTail(route, entrance) };
       })
     )
       .then((p) => {
         if (ctrl.signal.aborted) return;
-        setPlans(p);
+        setOutdoor(p);
         if (p.every((x) => x.outdoor.error)) setError(p[0].outdoor.error);
       })
       .finally(() => !ctrl.signal.aborted && setPlanning(false));
@@ -81,21 +101,24 @@ export default function useOutdoorNav({ dest, origin, stepFree }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [destKey, originKey]);
 
-  // Best entrance for the chosen mode (total time outside + inside).
+  // Best entrance for the chosen mode: outdoor time + indoor time. While an
+  // indoor route is still loading, that entrance is scored on outdoor time only.
+  const indoorFor = useCallback((nodeId) => indoor[nodeId]?.[stepFree ? "stepFree" : "fastest"] ?? null, [indoor, stepFree]);
   const best = useMemo(() => {
-    if (!plans) return null;
-    const scored = plans
+    if (!outdoor) return null;
+    const scored = outdoor
       .map((p) => {
-        const indoor = stepFree ? p.indoor.stepFree : p.indoor.fastest;
-        if (p.outdoor.error || !indoor || indoor.error) return null;
+        if (p.outdoor.error) return null;
+        const route = indoorFor(p.entrance.nodeId);
+        if (route?.error) return null; // e.g. no step-free way from this entrance
         const outdoorTime = p.outdoor.total / WALK_SPEED;
-        const indoorTime = indoor.distance / indoorSpeed(stepFree);
-        return { ...p, indoorRoute: indoor, outdoorTime, indoorTime, totalTime: outdoorTime + indoorTime };
+        const indoorTime = route ? route.duration ?? route.distance / indoorSpeed(stepFree) : 0;
+        return { ...p, indoorRoute: route, indoorLoading: !route, outdoorTime, indoorTime, totalTime: outdoorTime + indoorTime };
       })
       .filter(Boolean)
       .sort((a, b) => a.totalTime - b.totalTime);
     return scored[0] ?? { none: true };
-  }, [plans, stepFree]);
+  }, [outdoor, indoorFor, stepFree]);
 
   // ---- 2. navigate ----------------------------------------------------------
   const start = useCallback(
@@ -189,5 +212,10 @@ export default function useOutdoorNav({ dest, origin, stepFree }) {
     }
   }, [phase, progress, position, source, active]);
 
-  return { plans, best, planning, error, phase, source, active, position, progress, gpsError, start, stop };
+  // Indoor part for the entrance being walked to (for time estimates + hand-off)
+  const activeIndoor = active ? indoor[active.entrance.nodeId] ?? null : null;
+  const activeIndoorRoute = active ? indoorFor(active.entrance.nodeId) : null;
+  const indoorTime = activeIndoorRoute && !activeIndoorRoute.error ? activeIndoorRoute.duration ?? activeIndoorRoute.distance / indoorSpeed(stepFree) : 0;
+
+  return { best, planning, error, phase, source, active, position, progress, gpsError, start, stop, indoor, activeIndoor, indoorTime };
 }

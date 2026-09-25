@@ -9,7 +9,7 @@ export const KIND_INFO = {
   seating:   { name: "Common space",  icon: "seating", badge: "#188038" },
   lift:      { name: "Lift",          icon: "lift",    badge: "#3367d6" },
   stairs:    { name: "Stairs",        icon: "stairs",  badge: "#5f6368" },
-  stairwell: { name: "Stairwell",     icon: "stairs",  badge: "#5f6368" },
+  stairwell: { name: "Fire stairs",   icon: "stairs",  badge: "#5f6368" },
   shop:      { name: "Shop",          icon: "shop",    badge: "#e37400" },
   entrance:  { name: "Entrance",      icon: "entrance", badge: "#188038" },
 };
@@ -84,6 +84,11 @@ export const defaultStart = (places) =>
 
 // Rough travel time: walking ~1.3 m/s, step-free (wheelchair / pram) ~1.0 m/s.
 export const minutes = (metres, stepFree) => Math.max(1, Math.round(metres / (stepFree ? 1.0 : 1.3) / 60));
+
+// Minutes for a route from the API: uses its time estimate (includes waiting
+// for the lift / climbing stairs), falling back to distance for older servers.
+export const routeMinutes = (route, stepFree) =>
+  route.duration != null ? Math.max(1, Math.round(route.duration / 60)) : minutes(route.distance, stepFree);
 
 export function searchPlaces(places, query, category) {
   const cat = CATEGORIES.find((c) => c.id === category);

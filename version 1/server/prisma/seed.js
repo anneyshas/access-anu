@@ -85,7 +85,13 @@ async function seedBuilding(dirName) {
       ...f.layout,
       metresPerPixel: mpp,
       spaces: f.layout.spaces.map(link),
-      entrances: (f.layout.entrances ?? []).map(link),
+      // Entrances keep a stable ref ("1:EXIT-W") and their exact real-world
+      // position when building.json has one (set with the ?calibrate=1 tool).
+      entrances: (f.layout.entrances ?? []).map((en) => {
+        const ref = en.node ? key(en.node) : undefined;
+        const lngLat = (ref && b.entranceCoordinates?.[ref]) ?? en.lngLat;
+        return { ...link(en), ...(ref && { ref }), ...(lngLat && { lngLat }) };
+      }),
     };
  
     const floorData = {

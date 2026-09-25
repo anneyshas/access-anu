@@ -28,7 +28,7 @@ function markerHtml(b) {
         <rect x="11" y="9.5" width="2.2" height="2.2" fill="#ea4335"/><rect x="14.8" y="9.5" width="2.2" height="2.2" fill="#ea4335"/>
         <rect x="11" y="13.2" width="2.2" height="2.2" fill="#ea4335"/><rect x="14.8" y="13.2" width="2.2" height="5.8" fill="#ea4335"/>
       </svg>
-      <span class="-mt-3 whitespace-nowrap text-[13px] font-medium text-[#b31412] [paint-order:stroke] [-webkit-text-stroke:3px_white]" style="font-family: Roboto, system-ui, sans-serif">${shortName(b.name)}</span>
+      <span class="building-pin-label -mt-3 whitespace-nowrap text-[13px] font-medium text-[#b31412] [paint-order:stroke] [-webkit-text-stroke:3px_white]" style="font-family: Roboto, system-ui, sans-serif">${shortName(b.name)}</span>
     </div>`;
 }
 
@@ -217,8 +217,18 @@ export default function CampusView({ onEnterBuilding }) {
   const enterBuilding = useCallback(() => {
     if (!dest) return;
     const entrance = nav.active?.entrance ?? nav.best?.entrance;
-    onEnterBuilding(dest.building, { directions: { fromNodeId: entrance?.nodeId, toKey: dest.place.placeKey, stepFree } });
-  }, [dest, nav.active, nav.best, stepFree, onEnterBuilding]);
+    // Hand over the indoor routes fetched in the background, so the indoor map
+    // shows the route straight away instead of fetching it again.
+    const pre = entrance && nav.indoor[entrance.nodeId];
+    onEnterBuilding(dest.building, {
+      directions: {
+        fromNodeId: entrance?.nodeId,
+        toKey: dest.place.placeKey,
+        stepFree,
+        routes: pre?.stepFree && pre?.fastest ? { fromNodeId: entrance.nodeId, toNodeId: dest.place.nodeId, ...pre } : null,
+      },
+    });
+  }, [dest, nav.active, nav.best, nav.indoor, stepFree, onEnterBuilding]);
 
   // ---- drawing: entrances, blue dot, route ------------------------------------------
   const chosenEntrance = (nav.active ?? nav.best)?.entrance?.nodeId;
@@ -261,14 +271,30 @@ export default function CampusView({ onEnterBuilding }) {
     map.fitBounds(bounds, { padding, maxZoom: 18, pitch: 0, bearing: 0, duration: 900 });
   }, [map, previewLine]);
 
+  // While walking, make the map easy to read: flat buildings (no 3D blocks
+  // hiding the blue dot and the route) and no shop/café labels. Restored after.
+  const walking = nav.phase === "navigating" || nav.phase === "arrived";
+  useEffect(() => {
+    if (!map) return;
+    const set = (key, value) => {
+      try {
+        map.setConfigProperty("basemap", key, value);
+      } catch {
+        // not the Mapbox Standard style
+      }
+    };
+    set("show3dObjects", !walking);
+    set("showPointOfInterestLabels", !walking);
+  }, [map, walking, styleTick]);
+
   // Navigating: follow the user with the route pointing up.
   useEffect(() => {
     if (!map || nav.phase !== "navigating" || !following || !nav.position) return;
     map.easeTo({
       center: nav.position.lngLat,
       bearing: nav.progress?.heading ?? map.getBearing(),
-      pitch: 55,
-      zoom: 18,
+      pitch: 40,
+      zoom: 18.3,
       duration: 600,
       padding: wide() ? { left: 420, top: 0, bottom: 0, right: 0 } : { top: 140, bottom: 120, left: 0, right: 0 },
     });
@@ -288,12 +314,14 @@ export default function CampusView({ onEnterBuilding }) {
     setQuery("");
     setFocused(false);
     setSelected(item);
+    const b = item.building;
+    map?.flyTo({ center: [b.center.lng, b.center.lat], zoom: 17.5, pitch: 50, duration: 900 });
   };
 
   const calBuilding = CALIBRATE && map ? liveBuildings.find((b) => b.georeference) : null;
 
   return (
-    <div className={`absolute inset-0 font-sans ${dest ? "navigating" : ""}`}>
+    <div className={`absolute inset-0 font-sans ${dest ? "navigating" : ""} ${walking ? "walking" : ""}`}>
       {/* h-full/w-full (not absolute): mapbox-gl.css forces .mapboxgl-map to position:relative,
           which overrides Tailwind classes, so the parent does the positioning. */}
       <div ref={mapContainerRef} className="h-full w-full" />
@@ -349,7 +377,7 @@ export default function CampusView({ onEnterBuilding }) {
 
 function SearchBox({ query, setQuery, focused, setFocused, results, onPick }) {
   return (
-    <div className="absolute top-[max(0.75rem,env(safe-area-inset-top))] right-3 left-3 z-10 w-auto max-w-[400px] sm:top-4 sm:left-4">
+    <div className="absolute top-3 right-3 left-3 z-10 max-w-[400px] sm:top-4 sm:left-4">
       <div className="flex h-12 items-center gap-2 rounded-full bg-white pr-2 pl-4 shadow-map">
         <span className="text-[15px] font-bold tracking-tight text-map-blue">AccessANU</span>
         <span className="h-6 w-px bg-map-line" />
@@ -367,7 +395,7 @@ function SearchBox({ query, setQuery, focused, setFocused, results, onPick }) {
         </span>
       </div>
       {focused && (
-        <div className="mt-2 max-h-[calc(100dvh-6rem)] overflow-auto rounded-2xl bg-white py-2 shadow-map">
+        <div className="mt-2 max-h-[60vh] overflow-auto rounded-2xl bg-white py-2 shadow-map">
           {results.length === 0 ? (
             <div className="px-4 py-3 text-sm text-map-muted">Nothing matches “{query}”.</div>
           ) : (
@@ -403,7 +431,7 @@ function SelectionCard({ item, onClose, onDirections, onIndoor }) {
   const isPlace = item.type === "place";
   const info = isPlace ? KIND_INFO[item.kind] : null;
   return (
-    <div className="mobile-sheet absolute inset-x-0 bottom-0 z-10 max-h-[calc(100dvh-1rem)] overflow-y-auto rounded-t-2xl bg-white p-4 shadow-map sm:inset-x-auto sm:bottom-6 sm:left-4 sm:w-[360px] sm:rounded-2xl">
+    <div className="absolute inset-x-0 bottom-0 z-10 rounded-t-2xl bg-white p-4 shadow-map sm:inset-x-auto sm:bottom-6 sm:left-4 sm:w-[360px] sm:rounded-2xl">
       <div className="flex items-start gap-3">
         {isPlace ? (
           <IconBadge name={info.icon} color={info.badge} size={40} />
@@ -435,7 +463,7 @@ function SelectionCard({ item, onClose, onDirections, onIndoor }) {
           </span>
         )}
       </div>
-      <div className="mt-4 flex gap-2 [&>button]:min-w-0 [&>button]:flex-1 [&>button]:justify-center">
+      <div className="mt-4 flex gap-2">
         {isPlace && (
           <button onClick={() => onDirections(item)} className="flex h-9 items-center gap-2 rounded-full bg-map-blue px-4 text-[14px] font-medium text-white hover:bg-[#1765cc]">
             <Icon name="directions" className="size-[18px]" /> Directions

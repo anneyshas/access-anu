@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import FloorSwitcher from "./FloorSwitcher";
 import FloorMap from "./FloorMap";
 import SearchPanel from "./SearchPanel";
@@ -18,6 +18,59 @@ function routeBox(route, floor) {
   const xs = pts.map((p) => p.x);
   const ys = pts.map((p) => p.y);
   return { x0: Math.min(...xs), y0: Math.min(...ys), x1: Math.max(...xs), y1: Math.max(...ys) };
+}
+
+// Where the floor picker can go on the right edge without touching anything:
+// below the top panel (phones, where it spans the width) and above the place
+// card (phones) and the zoom buttons.
+function useSwitcherSpace(rootRef) {
+  const [space, setSpace] = useState({ top: 16, maxHeight: undefined });
+  const [tick, setTick] = useState(0);
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const bump = () => setTick((t) => t + 1);
+    // Re-measure when the screen or any panel changes size...
+    const ro = new ResizeObserver(bump);
+    const watch = () => {
+      ro.disconnect();
+      ro.observe(root);
+      root.querySelectorAll("[data-overlay]").forEach((el) => ro.observe(el));
+    };
+    watch();
+    // ...and when a panel opens or closes (ignores the map's own redraws).
+    const isOverlay = (n) => n.nodeType === 1 && (n.matches("[data-overlay]") || n.querySelector("[data-overlay]"));
+    const mo = new MutationObserver((records) => {
+      if (records.some((r) => [...r.addedNodes, ...r.removedNodes].some(isOverlay))) {
+        watch();
+        bump();
+      }
+    });
+    mo.observe(root, { childList: true, subtree: true });
+    return () => {
+      ro.disconnect();
+      mo.disconnect();
+    };
+  }, [rootRef]);
+  useLayoutEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const box = root.getBoundingClientRect();
+    const wide = box.width >= 640;
+    const rect = (sel) => root.querySelector(sel)?.getBoundingClientRect();
+    const topPanel = rect('[data-overlay="top"]');
+    const card = rect('[data-overlay="bottom"]');
+    const zoom = rect('[data-overlay="zoom"]');
+    const gap = 12;
+    // On wide screens the panels sit on the left, so the right edge is free from the top.
+    const top = Math.round(!wide && topPanel ? topPanel.bottom - box.top + gap : 16);
+    let bottom = box.bottom;
+    if (zoom) bottom = Math.min(bottom, zoom.top);
+    if (!wide && card) bottom = Math.min(bottom, card.top);
+    const maxHeight = Math.max(80, Math.round(bottom - box.top - gap - top));
+    setSpace((s) => (s.top === top && s.maxHeight === maxHeight ? s : { top, maxHeight }));
+  }, [rootRef, tick]);
+  return space;
 }
 
 // Indoor view: full-screen map of one floor with search, category chips, a
@@ -43,6 +96,8 @@ export default function BuildingView({ building, onBack, intent }) {
   const [loading, setLoading] = useState(false);
   const [picking, setPicking] = useState(null); // "from" | "to" | null
 
+  const rootRef = useRef(null);
+  const switcherSpace = useSwitcherSpace(rootRef);
   const floor = floors.find((f) => f.number === activeFloor);
   const places = useMemo(() => buildPlaces(floors, building.georeference), [floors, building.georeference]);
   const shortName = building.name.match(/\((.*)\)/)?.[1] ?? building.name;
@@ -90,6 +145,12 @@ export default function BuildingView({ building, onBack, intent }) {
       setRoutes({ stepFree: null, fastest: null });
       return;
     }
+    // Routes already fetched on the campus map (outdoor -> indoor hand-off)
+    const pre = intent?.directions?.routes;
+    if (pre && pre.fromNodeId === fromId && pre.toNodeId === toId) {
+      setRoutes({ stepFree: pre.stepFree, fastest: pre.fastest });
+      return;
+    }
     if (fromId === toId) {
       setRoutes({ stepFree: { error: "You're already there" }, fastest: { error: "You're already there" } });
       return;
@@ -107,6 +168,7 @@ export default function BuildingView({ building, onBack, intent }) {
     return () => {
       cancelled = true;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fromId, toId]);
 
   // When a route arrives (or the mode changes), show where it starts.
@@ -167,7 +229,7 @@ export default function BuildingView({ building, onBack, intent }) {
   const destinationSpace = dir?.to?.floor === activeFloor ? dir.to.spaceId : null;
 
   return (
-    <div className="absolute inset-0 overflow-hidden bg-map-bg font-sans text-map-ink">
+    <div ref={rootRef} className="absolute inset-0 overflow-hidden bg-map-bg font-sans text-map-ink">
       {floor ? (
         <FloorMap
           layout={floor.layout}
@@ -215,7 +277,8 @@ export default function BuildingView({ building, onBack, intent }) {
           activeFloor={activeFloor}
           onSelectFloor={showFloor}
           routeFloors={liveRoute?.floors ?? []}
-          placement={dir ? "right" : "left"}
+          top={switcherSpace.top}
+          maxHeight={switcherSpace.maxHeight}
         />
       )}
 

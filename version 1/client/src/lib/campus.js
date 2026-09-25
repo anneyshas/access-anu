@@ -8,21 +8,31 @@ export const buildingCode = (name) => name.replace(/\s*\(.*\)$/, "");
 
 export const metresPerPixel = (b) => b.floors.find((f) => f.layout?.metresPerPixel)?.layout.metresPerPixel;
 
-// Main entrances of a building with their lat/lng (needs a georeference).
+// Main entrances of a building with their lat/lng.
+// An entrance can have an exact position (building.json "entranceCoordinates",
+// set with the ?calibrate=1 tool); otherwise it's worked out from the plan with
+// the building's georeference.
 // (georef.metresPerPixel, when set by the calibration tool, overrides the floors' scale.)
 export function entrancesFor(b, georef = b.georeference) {
   const mpp = georef?.metresPerPixel ?? metresPerPixel(b);
-  if (!georef || !mpp) return [];
   const out = [];
   for (const f of b.floors) {
     for (const en of f.layout?.entrances ?? []) {
       if (en.kind !== "main" || !en.nodeId) continue;
-      const side = compassSide(georef, en.side);
+      // Exact position: set live in the calibrate tool, else saved in building.json,
+      // else worked out from the floor plan.
+      const override = en.ref ? georef?.entranceCoordinates?.[en.ref] : undefined;
+      const lngLat = override === null ? null : override ?? en.lngLat ?? null; // null = cleared in the tool
+      const finalLngLat = lngLat ?? (georef && mpp ? pixelToLngLat(georef, mpp, en.x, en.y) : null);
+      if (!finalLngLat) continue;
+      const side = georef ? compassSide(georef, en.side) : { W: "West", E: "East", N: "North", S: "South" }[en.side];
       out.push({
         nodeId: en.nodeId,
+        ref: en.ref,
         floor: f.number,
         name: side ? `${side} entrance` : en.label ?? "Entrance",
-        lngLat: pixelToLngLat(georef, mpp, en.x, en.y),
+        lngLat: finalLngLat,
+        exact: Boolean(lngLat),
       });
     }
   }

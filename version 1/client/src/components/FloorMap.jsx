@@ -16,6 +16,7 @@ const SPACE_STYLES = {
   service:   { fill: "#f1f3f4", stroke: "#dadce0" },
   void:      { fill: "#f8f9fa", stroke: "#dadce0", pattern: "hatch", muted: true },
 };
+
 // Rooms you can't get into: plain light grey, no name or icon.
 const CLOSED_STYLE = { fill: "#eceef0", stroke: "#dcdfe2" };
 const styleFor = (sp) => (isClosed(sp) ? CLOSED_STYLE : SPACE_STYLES[sp.kind] ?? SPACE_STYLES.room);
@@ -194,7 +195,8 @@ export default function FloorMap({
     const padL = w >= 900 ? 420 : 16;
     const padT = w >= 900 ? 24 : 120;
     const pad = 24;
-    const aw = w - padL - pad;
+    const padR = 72; // level picker on the right
+    const aw = w - padL - padR;
     const ah = h - padT - pad;
     const fw = frame.x1 - frame.x0;
     const fh = frame.y1 - frame.y0;
@@ -555,7 +557,7 @@ export default function FloorMap({
         ))}
 
       {/* Zoom controls */}
-      <div className="absolute right-3 bottom-6 z-20 flex flex-col overflow-hidden rounded-lg bg-white shadow-map sm:right-4">
+      <div data-overlay="zoom" className="absolute right-3 bottom-6 z-20 flex flex-col overflow-hidden rounded-lg bg-white shadow-map sm:right-4">
         <button aria-label="Zoom in" onClick={() => zoomAt(1.4, size.w / 2, size.h / 2)} className="grid size-10 place-items-center text-map-muted hover:bg-map-hover">
           <Icon name="add" />
         </button>

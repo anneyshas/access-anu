@@ -15,6 +15,16 @@
   "rotation": 36.5,
   "note": "Calibrated against the satellite map with ?calibrate=1 (Sept 2026)."
  },
+ "entranceCoordinates": {
+  "1:EXIT-W": [
+   149.1203336,
+   -35.2775285
+  ],
+  "1:EXIT-SE": [
+   149.1206016,
+   -35.2777677
+  ]
+ },
  "floors": [
   "level-1.json",
   "level-2.json",
@@ -48,14 +58,14 @@
   {
    "from": "1:STAIR-A",
    "to": "2:STAIR-A",
-   "type": "stairs",
+   "type": "emergency-stairs",
    "accessible": false,
    "weight": 8
   },
   {
    "from": "1:STAIR-B",
    "to": "2:STAIR-B",
-   "type": "stairs",
+   "type": "emergency-stairs",
    "accessible": false,
    "weight": 8
   },
@@ -83,14 +93,14 @@
   {
    "from": "2:STAIR-A",
    "to": "3:STAIR-A",
-   "type": "stairs",
+   "type": "emergency-stairs",
    "accessible": false,
    "weight": 8
   },
   {
    "from": "2:STAIR-B",
    "to": "3:STAIR-B",
-   "type": "stairs",
+   "type": "emergency-stairs",
    "accessible": false,
    "weight": 8
   },
@@ -118,14 +128,14 @@
   {
    "from": "3:STAIR-A",
    "to": "4:STAIR-A",
-   "type": "stairs",
+   "type": "emergency-stairs",
    "accessible": false,
    "weight": 8
   },
   {
    "from": "3:STAIR-B",
    "to": "4:STAIR-B",
-   "type": "stairs",
+   "type": "emergency-stairs",
    "accessible": false,
    "weight": 8
   },
@@ -153,14 +163,14 @@
   {
    "from": "4:STAIR-A",
    "to": "5:STAIR-A",
-   "type": "stairs",
+   "type": "emergency-stairs",
    "accessible": false,
    "weight": 8
   },
   {
    "from": "4:STAIR-B",
    "to": "5:STAIR-B",
-   "type": "stairs",
+   "type": "emergency-stairs",
    "accessible": false,
    "weight": 8
   },

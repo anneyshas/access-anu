@@ -47,9 +47,30 @@ class MinHeap {
  * Shortest path with Dijkstra.
  *   accessibleOnly: skip edges marked not accessible (stairs, stairwell fire
  *   doors) and pass only through accessible nodes — Accessibility Mode.
- * Returns { path: [nodeId...], edges: [edge...], distance } or null.
+ *   includeEmergency: also use "emergency-stairs" edges (fire stairwells).
+ *   Off by default: fire stairs are for evacuation, not everyday routes.
+ * Returns { path: [nodeId...], edges: [edge...], cost (seconds) } or null.
  */
-export function shortestPath(nodes, edges, fromId, toId, { accessibleOnly = false } = {}) {
+export const EMERGENCY_EDGE = "emergency-stairs";
+
+// Routes are chosen by estimated TIME (seconds), not raw distance, so the
+// fastest route can prefer the main stairs for a floor or two and the lift
+// for longer trips, like people actually do.
+const WALK_SPEED = 1.3; // m/s
+const LIFT_BOARD = 15; // s charged getting on and again getting off (~30 s average wait)
+const LIFT_PER_FLOOR = 5; // s
+const STAIRS_PER_FLOOR = 15; // s per flight
+const STAIRS_METRES_PER_FLOOR = 8; // walking length of one flight (for the distance shown)
+
+const isVertical = (a, b) => a && b && a.floor !== b.floor;
+function edgeCost(e, a, b) {
+  if (isVertical(a, b)) return e.type === "lift" ? LIFT_PER_FLOOR : STAIRS_PER_FLOOR;
+  let t = e.weight / WALK_SPEED;
+  if ((a?.type === "lift") !== (b?.type === "lift")) t += LIFT_BOARD; // stepping into / out of a lift
+  return t;
+}
+
+export function shortestPath(nodes, edges, fromId, toId, { accessibleOnly = false, includeEmergency = false } = {}) {
   const nodeById = new Map(nodes.map((n) => [n.id, n]));
   if (!nodeById.has(fromId) || !nodeById.has(toId)) return null;
 
@@ -60,6 +81,7 @@ export function shortestPath(nodes, edges, fromId, toId, { accessibleOnly = fals
   };
   for (const e of edges) {
     if (accessibleOnly && !e.accessible) continue;
+    if (!includeEmergency && e.type === EMERGENCY_EDGE) continue;
     add(e.fromNodeId, e.toNodeId, e);
     if (e.bidirectional !== false) add(e.toNodeId, e.fromNodeId, e);
   }
@@ -76,7 +98,7 @@ export function shortestPath(nodes, edges, fromId, toId, { accessibleOnly = fals
     for (const [v, e] of adj.get(u) ?? []) {
       const node = nodeById.get(v);
       if (accessibleOnly && v !== toId && node && !node.accessible) continue;
-      const nd = d + e.weight;
+      const nd = d + edgeCost(e, nodeById.get(u), node);
       if (nd < (dist.get(v) ?? Infinity)) {
         dist.set(v, nd);
         prev.set(v, [u, e]);
@@ -95,7 +117,7 @@ export function shortestPath(nodes, edges, fromId, toId, { accessibleOnly = fals
   }
   path.reverse();
   used.reverse();
-  return { path, edges: used, distance: dist.get(toId) };
+  return { path, edges: used, cost: dist.get(toId) };
 }
 
 const round = (m) => Math.max(1, Math.round(m));
@@ -104,9 +126,11 @@ const floorName = (n) => `Level ${n}`;
 /**
  * Turns a path into what the app shows: per-floor legs to draw on the map,
  * and turn-by-turn instructions ("Walk 23 m to Lift 2", "Take Lift 2 up to
- * Level 5", "Arrive at Room 5.04").
+ * Level 5", "Arrive at Room 5.04"), plus the real walking distance (metres)
+ * and an estimated duration (seconds) at the given walking speed
+ * (step-free / wheelchair ~1.0 m/s, walking ~1.3 m/s).
  */
-export function describeRoute(nodes, result) {
+export function describeRoute(nodes, result, { speed = WALK_SPEED } = {}) {
   const nodeById = new Map(nodes.map((n) => [n.id, n]));
   const pts = result.path.map((id) => {
     const n = nodeById.get(id);
@@ -165,8 +189,28 @@ export function describeRoute(nodes, result) {
     .filter((l, i) => l.points.length > 1 || i === 0 || i === legs.length - 1)
     .map((l) => l.floor);
 
+  // Distance you actually cover, and how long it takes
+  let metres = 0;
+  let seconds = 0;
+  result.edges.forEach((e, k) => {
+    const a = nodeById.get(result.path[k]);
+    const b = nodeById.get(result.path[k + 1]);
+    if (isVertical(a, b)) {
+      if (e.type === "lift") seconds += LIFT_PER_FLOOR;
+      else {
+        seconds += STAIRS_PER_FLOOR;
+        metres += STAIRS_METRES_PER_FLOOR;
+      }
+    } else {
+      metres += e.weight;
+      seconds += e.weight / speed;
+      if ((a?.type === "lift") !== (b?.type === "lift")) seconds += LIFT_BOARD;
+    }
+  });
+
   return {
-    distance: round(result.distance),
+    distance: round(metres),
+    duration: Math.round(seconds),
     floors: [...new Set(walked_floors)],
     legs,
     steps,

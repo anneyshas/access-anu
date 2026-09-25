@@ -41,7 +41,7 @@ function ModePills({ stepFree, onMode, best }) {
 // ---- Route preview (before starting) ----------------------------------------
 function Preview({ dest, origin, originStatus, onUseMyLocation, onPickOnMap, picking, stepFree, onMode, nav, onClose }) {
   const { best, planning, error } = nav;
-  const ready = best && !best.none;
+  const ready = best && !best.none && best.outdoor && best.indoorRoute;
   return (
     <div className="absolute top-[max(env(safe-area-inset-top),0.5rem)] left-0 z-20 max-h-[calc(100dvh-1rem)] w-full max-w-full overflow-y-auto bg-white shadow-map sm:top-4 sm:left-4 sm:max-h-[calc(100%-24px)] sm:w-[400px] sm:rounded-2xl">
       <div className="flex items-center gap-2 px-2 pt-2">
@@ -109,6 +109,8 @@ function Preview({ dest, origin, originStatus, onUseMyLocation, onPickOnMap, pic
           <p className="text-[13px] text-map-muted">Set where you're starting from to see the route.</p>
         ) : planning ? (
           <p className="text-[13px] text-map-muted">Finding the best route…</p>
+        ) : best && !best.none && !best.indoorRoute ? (
+          <p className="text-[13px] text-map-muted">Finding the indoor route…</p>
         ) : error ? (
           <p className="text-[13px] text-map-red">{error}</p>
         ) : best?.none ? (

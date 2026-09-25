@@ -1,5 +1,5 @@
 import { prisma } from "../config/prisma.js";
-import { shortestPath, describeRoute } from "../services.js/pathfinding.js";
+import { shortestPath, describeRoute } from "../services/pathfinding.js";
 
 // GET /api/route?from=<nodeId>&to=<nodeId>&accessible=true|false
 // Shortest route between two nodes anywhere in the same building (across
@@ -34,5 +34,5 @@ export async function getRoute(req, res) {
     });
   }
 
-  res.json({ from, to, accessible: accessibleOnly, ...describeRoute(nodes, result) });
+  res.json({ from, to, accessible: accessibleOnly, ...describeRoute(nodes, result, { speed: accessibleOnly ? 1.0 : 1.3 }) });
 }

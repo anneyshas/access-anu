@@ -1,15 +1,18 @@
 // Floor picker, top floor first (like the level picker in Google Maps).
 // Floors on the current route get a small blue dot.
-// placement "left" sits under the search box; "right" sits above the zoom
-// buttons (used while the directions panel covers the top-left).
-export default function FloorSwitcher({ floors, activeFloor, onSelectFloor, routeFloors = [], placement = "left" }) {
+//
+// Always on the right edge. BuildingView measures the panels around it and
+// passes `top` / `maxHeight` so it never sits under the search box, the
+// directions panel, the place card or the zoom buttons; if space is short the
+// list scrolls instead of overlapping.
+export default function FloorSwitcher({ floors, activeFloor, onSelectFloor, routeFloors = [], top = 16, maxHeight }) {
   const ordered = [...floors].sort((a, b) => b.number - a.number);
-  const where = placement === "right" ? "right-2 bottom-36 sm:right-4 sm:bottom-44" : "top-[max(7rem,calc(env(safe-area-inset-top)+6rem))] left-3 sm:left-4 sm:top-[124px]";
   return (
     <div
       role="group"
       aria-label="Choose floor"
-      className={`absolute z-20 flex flex-col overflow-hidden rounded-lg bg-white shadow-map ${where}`}
+      style={{ top, maxHeight }}
+      className="absolute right-3 z-20 flex flex-col overflow-y-auto rounded-lg bg-white shadow-map sm:right-4"
     >
       {ordered.map((f) => {
         const active = f.number === activeFloor;
@@ -19,7 +22,7 @@ export default function FloorSwitcher({ floors, activeFloor, onSelectFloor, rout
             key={f.number}
             onClick={() => onSelectFloor(f.number)}
             title={f.label || `Level ${f.number}`}
-            className={`relative h-10 w-11 border-b border-map-line text-[14px] font-medium last:border-b-0 ${
+            className={`relative h-10 w-11 shrink-0 border-b border-map-line text-[14px] font-medium last:border-b-0 ${
               active ? "bg-map-blue-soft text-map-blue" : "text-map-ink-2 hover:bg-map-hover"
             }`}
           >
