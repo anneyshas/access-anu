@@ -2,8 +2,8 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import FloorSwitcher from "./FloorSwitcher";
 import FloorMap from "./FloorMap";
 import SearchPanel from "./SearchPanel";
-import PlaceCard from "./PlaceCard";
-import DirectionsPanel from "./DirectionsPanel";
+import PlaceCard from "./Placecard";
+import DirectionsPanel from "./Directionspanel";
 import { fetchGraph, fetchRoute } from "../services/api";
 import { buildPlaces, CATEGORIES, defaultStart } from "../places";
 
