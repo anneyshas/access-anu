@@ -1,0 +1,1288 @@
+{
+ "number": 4,
+ "label": "Level 4",
+ "image": {
+  "url": "/floorplans/building-15-level-4.png",
+  "width": 720,
+  "height": 1520
+ },
+ "layout": {
+  "width": 720,
+  "height": 1520,
+  "outline": [
+   [
+    60,
+    60
+   ],
+   [
+    660,
+    60
+   ],
+   [
+    660,
+    1460
+   ],
+   [
+    60,
+    1460
+   ]
+  ],
+  "spaces": [
+   {
+    "id": "stairwell-4-01",
+    "kind": "stairwell",
+    "polygon": [
+     [
+      112,
+      112
+     ],
+     [
+      180,
+      112
+     ],
+     [
+      180,
+      226
+     ],
+     [
+      112,
+      226
+     ]
+    ],
+    "label": "Stair NW",
+    "node": "STAIR-NW",
+    "doors": [
+     [
+      168,
+      226
+     ]
+    ]
+   },
+   {
+    "id": "stairwell-4-02",
+    "kind": "stairwell",
+    "polygon": [
+     [
+      184,
+      452
+     ],
+     [
+      280,
+      452
+     ],
+     [
+      280,
+      527
+     ],
+     [
+      184,
+      527
+     ]
+    ],
+    "label": "Stair A",
+    "node": "STAIR-A",
+    "doors": [
+     [
+      280,
+      495
+     ]
+    ]
+   },
+   {
+    "id": "lift-4-03",
+    "kind": "lift",
+    "polygon": [
+     [
+      184,
+      530
+     ],
+     [
+      280,
+      530
+     ],
+     [
+      280,
+      567
+     ],
+     [
+      184,
+      567
+     ]
+    ],
+    "label": "Lifts",
+    "sublabel": "Lifts 1 & 2",
+    "node": "LIFT",
+    "doors": [
+     [
+      232,
+      567
+     ]
+    ]
+   },
+   {
+    "id": "stairwell-4-04",
+    "kind": "stairwell",
+    "polygon": [
+     [
+      174,
+      937
+     ],
+     [
+      280,
+      937
+     ],
+     [
+      280,
+      1008
+     ],
+     [
+      174,
+      1008
+     ]
+    ],
+    "label": "Stair B",
+    "node": "STAIR-B",
+    "doors": [
+     [
+      280,
+      955
+     ]
+    ]
+   },
+   {
+    "id": "stairwell-4-05",
+    "kind": "stairwell",
+    "polygon": [
+     [
+      520,
+      1351
+     ],
+     [
+      606,
+      1351
+     ],
+     [
+      606,
+      1405
+     ],
+     [
+      520,
+      1405
+     ]
+    ],
+    "label": "Stair SE",
+    "node": "STAIR-SE",
+    "doors": [
+     [
+      585,
+      1351
+     ]
+    ]
+   },
+   {
+    "id": "room-4-06",
+    "kind": "room",
+    "polygon": [
+     [
+      62,
+      62
+     ],
+     [
+      658,
+      62
+     ],
+     [
+      658,
+      440
+     ],
+     [
+      62,
+      440
+     ]
+    ],
+    "label": "4.01",
+    "sublabel": "Open plan north",
+    "labelAt": [
+     480,
+     250
+    ],
+    "node": "R401",
+    "doors": [
+     [
+      400,
+      440
+     ]
+    ]
+   },
+   {
+    "id": "room-4-07",
+    "kind": "room",
+    "polygon": [
+     [
+      305,
+      440
+     ],
+     [
+      658,
+      440
+     ],
+     [
+      658,
+      1075
+     ],
+     [
+      305,
+      1075
+     ]
+    ],
+    "label": "4.02",
+    "sublabel": "Open plan east",
+    "labelAt": [
+     530,
+     760
+    ],
+    "node": "R402",
+    "doors": [
+     [
+      305,
+      587
+     ]
+    ]
+   },
+   {
+    "id": "room-4-08",
+    "kind": "room",
+    "polygon": [
+     [
+      62,
+      440
+     ],
+     [
+      180,
+      440
+     ],
+     [
+      180,
+      572
+     ],
+     [
+      62,
+      572
+     ]
+    ],
+    "label": "4.03",
+    "node": "R403",
+    "doors": [
+     [
+      165,
+      572
+     ]
+    ]
+   },
+   {
+    "id": "room-4-09",
+    "kind": "room",
+    "polygon": [
+     [
+      62,
+      572
+     ],
+     [
+      150,
+      572
+     ],
+     [
+      150,
+      700
+     ],
+     [
+      62,
+      700
+     ]
+    ],
+    "label": "4.04",
+    "node": "R404",
+    "doors": [
+     [
+      150,
+      600
+     ]
+    ]
+   },
+   {
+    "id": "room-4-10",
+    "kind": "room",
+    "polygon": [
+     [
+      62,
+      765
+     ],
+     [
+      160,
+      765
+     ],
+     [
+      160,
+      935
+     ],
+     [
+      62,
+      935
+     ]
+    ],
+    "label": "4.05",
+    "node": "R405",
+    "doors": [
+     [
+      130,
+      765
+     ]
+    ]
+   },
+   {
+    "id": "service-4-11",
+    "kind": "service",
+    "polygon": [
+     [
+      62,
+      935
+     ],
+     [
+      174,
+      935
+     ],
+     [
+      174,
+      1008
+     ],
+     [
+      62,
+      1008
+     ]
+    ]
+   },
+   {
+    "id": "room-4-12",
+    "kind": "room",
+    "polygon": [
+     [
+      62,
+      1010
+     ],
+     [
+      125,
+      1010
+     ],
+     [
+      125,
+      1075
+     ],
+     [
+      62,
+      1075
+     ]
+    ],
+    "label": "4.06",
+    "node": "R406",
+    "doors": [
+     [
+      110,
+      1075
+     ]
+    ]
+   },
+   {
+    "id": "room-4-13",
+    "kind": "room",
+    "polygon": [
+     [
+      125,
+      1010
+     ],
+     [
+      185,
+      1010
+     ],
+     [
+      185,
+      1075
+     ],
+     [
+      125,
+      1075
+     ]
+    ],
+    "label": "4.07",
+    "node": "R407",
+    "doors": [
+     [
+      170,
+      1075
+     ]
+    ]
+   },
+   {
+    "id": "room-4-14",
+    "kind": "room",
+    "polygon": [
+     [
+      185,
+      1010
+     ],
+     [
+      248,
+      1010
+     ],
+     [
+      248,
+      1075
+     ],
+     [
+      185,
+      1075
+     ]
+    ],
+    "label": "4.08",
+    "node": "R408",
+    "doors": [
+     [
+      230,
+      1075
+     ]
+    ]
+   },
+   {
+    "id": "room-4-15",
+    "kind": "room",
+    "polygon": [
+     [
+      248,
+      1010
+     ],
+     [
+      305,
+      1010
+     ],
+     [
+      305,
+      1075
+     ],
+     [
+      248,
+      1075
+     ]
+    ],
+    "label": "4.09",
+    "node": "R409",
+    "doors": [
+     [
+      290,
+      1075
+     ]
+    ]
+   },
+   {
+    "id": "room-4-16",
+    "kind": "room",
+    "polygon": [
+     [
+      62,
+      1075
+     ],
+     [
+      658,
+      1075
+     ],
+     [
+      658,
+      1458
+     ],
+     [
+      62,
+      1458
+     ]
+    ],
+    "label": "4.10",
+    "sublabel": "Open plan south",
+    "labelAt": [
+     330,
+     1270
+    ],
+    "node": "R410",
+    "doors": [
+     [
+      400,
+      1075
+     ]
+    ]
+   },
+   {
+    "id": "toilet-4-17",
+    "kind": "toilet",
+    "polygon": [
+     [
+      150,
+      605
+     ],
+     [
+      305,
+      605
+     ],
+     [
+      305,
+      700
+     ],
+     [
+      150,
+      700
+     ]
+    ],
+    "label": "WC",
+    "sublabel": "Male",
+    "node": "WC-M",
+    "doors": [
+     [
+      250,
+      605
+     ]
+    ]
+   },
+   {
+    "id": "toilet-4-18",
+    "kind": "toilet",
+    "polygon": [
+     [
+      160,
+      770
+     ],
+     [
+      305,
+      770
+     ],
+     [
+      305,
+      935
+     ],
+     [
+      160,
+      935
+     ]
+    ],
+    "label": "WC",
+    "sublabel": "Female",
+    "node": "WC-F",
+    "doors": [
+     [
+      245,
+      770
+     ]
+    ]
+   }
+  ],
+  "columns": [
+   [
+    298,
+    192,
+    8,
+    8
+   ],
+   [
+    298,
+    318,
+    8,
+    8
+   ],
+   [
+    298,
+    445,
+    8,
+    8
+   ],
+   [
+    298,
+    570,
+    8,
+    8
+   ],
+   [
+    298,
+    695,
+    8,
+    8
+   ],
+   [
+    298,
+    820,
+    8,
+    8
+   ],
+   [
+    298,
+    945,
+    8,
+    8
+   ],
+   [
+    298,
+    1071,
+    8,
+    8
+   ],
+   [
+    298,
+    1198,
+    8,
+    8
+   ],
+   [
+    298,
+    1324,
+    8,
+    8
+   ],
+   [
+    415,
+    192,
+    8,
+    8
+   ],
+   [
+    415,
+    318,
+    8,
+    8
+   ],
+   [
+    415,
+    445,
+    8,
+    8
+   ],
+   [
+    415,
+    570,
+    8,
+    8
+   ],
+   [
+    415,
+    695,
+    8,
+    8
+   ],
+   [
+    415,
+    820,
+    8,
+    8
+   ],
+   [
+    415,
+    945,
+    8,
+    8
+   ],
+   [
+    415,
+    1071,
+    8,
+    8
+   ],
+   [
+    415,
+    1198,
+    8,
+    8
+   ],
+   [
+    415,
+    1324,
+    8,
+    8
+   ],
+   [
+    532,
+    192,
+    8,
+    8
+   ],
+   [
+    532,
+    318,
+    8,
+    8
+   ],
+   [
+    532,
+    445,
+    8,
+    8
+   ],
+   [
+    532,
+    570,
+    8,
+    8
+   ],
+   [
+    532,
+    695,
+    8,
+    8
+   ],
+   [
+    532,
+    820,
+    8,
+    8
+   ],
+   [
+    532,
+    945,
+    8,
+    8
+   ],
+   [
+    532,
+    1071,
+    8,
+    8
+   ],
+   [
+    532,
+    1198,
+    8,
+    8
+   ],
+   [
+    532,
+    1324,
+    8,
+    8
+   ]
+  ],
+  "entrances": []
+ },
+ "nodes": [
+  {
+   "id": "STAIR-NW",
+   "name": "Stair NW",
+   "type": "stairs",
+   "accessible": false,
+   "pixelX": 146,
+   "pixelY": 169
+  },
+  {
+   "id": "STAIR-A",
+   "name": "Stair A",
+   "type": "stairs",
+   "accessible": false,
+   "pixelX": 232,
+   "pixelY": 490
+  },
+  {
+   "id": "LIFT",
+   "name": "Lifts 1 & 2",
+   "type": "lift",
+   "accessible": true,
+   "pixelX": 232,
+   "pixelY": 548
+  },
+  {
+   "id": "STAIR-B",
+   "name": "Stair B",
+   "type": "stairs",
+   "accessible": false,
+   "pixelX": 227,
+   "pixelY": 972
+  },
+  {
+   "id": "STAIR-SE",
+   "name": "Stair SE",
+   "type": "stairs",
+   "accessible": false,
+   "pixelX": 563,
+   "pixelY": 1378
+  },
+  {
+   "id": "C-NW",
+   "name": "C-NW",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 168,
+   "pixelY": 300
+  },
+  {
+   "id": "C-N1",
+   "name": "C-N1",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 400,
+   "pixelY": 300
+  },
+  {
+   "id": "C-N2",
+   "name": "C-N2",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 400,
+   "pixelY": 440
+  },
+  {
+   "id": "C-A",
+   "name": "C-A",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 400,
+   "pixelY": 495
+  },
+  {
+   "id": "C-L",
+   "name": "C-L",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 400,
+   "pixelY": 587
+  },
+  {
+   "id": "C-M",
+   "name": "C-M",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 400,
+   "pixelY": 735
+  },
+  {
+   "id": "C-B",
+   "name": "C-B",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 400,
+   "pixelY": 955
+  },
+  {
+   "id": "C-S1",
+   "name": "C-S1",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 400,
+   "pixelY": 1095
+  },
+  {
+   "id": "C-S2",
+   "name": "C-S2",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 400,
+   "pixelY": 1300
+  },
+  {
+   "id": "C-SE",
+   "name": "C-SE",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 585,
+   "pixelY": 1300
+  },
+  {
+   "id": "C-LOB",
+   "name": "C-LOB",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 232,
+   "pixelY": 587
+  },
+  {
+   "id": "C-LOB2",
+   "name": "C-LOB2",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 178,
+   "pixelY": 600
+  },
+  {
+   "id": "C-P",
+   "name": "C-P",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 178,
+   "pixelY": 650
+  },
+  {
+   "id": "C-WC",
+   "name": "C-WC",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 178,
+   "pixelY": 735
+  },
+  {
+   "id": "C-WF",
+   "name": "C-WF",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 245,
+   "pixelY": 752
+  },
+  {
+   "id": "C-O1",
+   "name": "C-O1",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 110,
+   "pixelY": 1095
+  },
+  {
+   "id": "C-O2",
+   "name": "C-O2",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 170,
+   "pixelY": 1095
+  },
+  {
+   "id": "C-O3",
+   "name": "C-O3",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 230,
+   "pixelY": 1095
+  },
+  {
+   "id": "C-O4",
+   "name": "C-O4",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 290,
+   "pixelY": 1095
+  },
+  {
+   "id": "C-BW",
+   "name": "C-BW",
+   "type": "corridor",
+   "accessible": true,
+   "pixelX": 300,
+   "pixelY": 955
+  },
+  {
+   "id": "R401",
+   "name": "Room 4.01",
+   "type": "room",
+   "accessible": true,
+   "pixelX": 480,
+   "pixelY": 250
+  },
+  {
+   "id": "R402",
+   "name": "Room 4.02",
+   "type": "room",
+   "accessible": true,
+   "pixelX": 530,
+   "pixelY": 760
+  },
+  {
+   "id": "R403",
+   "name": "Room 4.03",
+   "type": "room",
+   "accessible": true,
+   "pixelX": 121,
+   "pixelY": 506
+  },
+  {
+   "id": "R404",
+   "name": "Room 4.04",
+   "type": "room",
+   "accessible": true,
+   "pixelX": 106,
+   "pixelY": 636
+  },
+  {
+   "id": "R405",
+   "name": "Room 4.05",
+   "type": "room",
+   "accessible": true,
+   "pixelX": 111,
+   "pixelY": 850
+  },
+  {
+   "id": "R406",
+   "name": "Room 4.06",
+   "type": "room",
+   "accessible": true,
+   "pixelX": 94,
+   "pixelY": 1042
+  },
+  {
+   "id": "R407",
+   "name": "Room 4.07",
+   "type": "room",
+   "accessible": true,
+   "pixelX": 155,
+   "pixelY": 1042
+  },
+  {
+   "id": "R408",
+   "name": "Room 4.08",
+   "type": "room",
+   "accessible": true,
+   "pixelX": 216,
+   "pixelY": 1042
+  },
+  {
+   "id": "R409",
+   "name": "Room 4.09",
+   "type": "room",
+   "accessible": true,
+   "pixelX": 276,
+   "pixelY": 1042
+  },
+  {
+   "id": "R410",
+   "name": "Room 4.10",
+   "type": "room",
+   "accessible": true,
+   "pixelX": 330,
+   "pixelY": 1270
+  },
+  {
+   "id": "WC-M",
+   "name": "Male toilets",
+   "type": "toilet",
+   "accessible": true,
+   "pixelX": 228,
+   "pixelY": 652
+  },
+  {
+   "id": "WC-F",
+   "name": "Female toilets",
+   "type": "toilet",
+   "accessible": true,
+   "pixelX": 232,
+   "pixelY": 852
+  }
+ ],
+ "edges": [
+  {
+   "fromId": "STAIR-NW",
+   "toId": "C-NW",
+   "type": "stairs",
+   "accessible": false
+  },
+  {
+   "fromId": "STAIR-A",
+   "toId": "C-A",
+   "type": "stairs",
+   "accessible": false
+  },
+  {
+   "fromId": "LIFT",
+   "toId": "C-LOB",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "STAIR-SE",
+   "toId": "C-SE",
+   "type": "stairs",
+   "accessible": false
+  },
+  {
+   "fromId": "C-NW",
+   "toId": "C-N1",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "C-N1",
+   "toId": "C-N2",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "C-N2",
+   "toId": "C-A",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "C-A",
+   "toId": "C-L",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "C-L",
+   "toId": "C-M",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "C-M",
+   "toId": "C-B",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "C-B",
+   "toId": "C-S1",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "C-S1",
+   "toId": "C-S2",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "C-S2",
+   "toId": "C-SE",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "C-LOB",
+   "toId": "C-L",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "C-LOB2",
+   "toId": "C-LOB",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "C-LOB2",
+   "toId": "C-P",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "C-P",
+   "toId": "C-WC",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "C-WC",
+   "toId": "C-WF",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "C-WF",
+   "toId": "C-M",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "C-O1",
+   "toId": "C-O2",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "C-O2",
+   "toId": "C-O3",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "C-O3",
+   "toId": "C-O4",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "C-O4",
+   "toId": "C-S1",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "C-B",
+   "toId": "C-BW",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "STAIR-B",
+   "toId": "C-BW",
+   "type": "stairs",
+   "accessible": false
+  },
+  {
+   "fromId": "R401",
+   "toId": "C-N2",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "R402",
+   "toId": "C-L",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "R403",
+   "toId": "C-LOB2",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "R404",
+   "toId": "C-LOB2",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "R405",
+   "toId": "C-WC",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "R406",
+   "toId": "C-O1",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "R407",
+   "toId": "C-O2",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "R408",
+   "toId": "C-O3",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "R409",
+   "toId": "C-O4",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "R410",
+   "toId": "C-S1",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "WC-M",
+   "toId": "C-LOB",
+   "type": "passage",
+   "accessible": true
+  },
+  {
+   "fromId": "WC-F",
+   "toId": "C-WF",
+   "type": "passage",
+   "accessible": true
+  }
+ ]
+}
