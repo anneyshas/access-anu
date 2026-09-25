@@ -26,6 +26,7 @@ enum EdgeType {
   fire_door
   lift
   stairs
+  emergency_stairs
 }
 
 model Node {

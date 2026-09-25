@@ -117,7 +117,7 @@ async function seedBuilding(dirName) {
       data: {
         fromNodeId: idMap[v.from],
         toNodeId: idMap[v.to],
-        type: v.type,
+        type: v.type === "emergency-stairs" ? "emergency_stairs" : v.type,
         accessible: v.accessible,
         weight: v.weight,
         building: b.name,

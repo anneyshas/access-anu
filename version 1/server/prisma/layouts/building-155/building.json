@@ -15,14 +15,14 @@
   "rotation": 36.5,
   "note": "Calibrated against the satellite map with ?calibrate=1 (Sept 2026)."
  },
- "entranceCoordinates": {
+"entranceCoordinates": {
   "1:EXIT-W": [
-   149.1203336,
-   -35.2775285
+   149.1203293,
+   -35.2775307
   ],
   "1:EXIT-SE": [
-   149.1206016,
-   -35.2777677
+   149.1206005,
+   -35.2777672
   ]
  },
  "floors": [

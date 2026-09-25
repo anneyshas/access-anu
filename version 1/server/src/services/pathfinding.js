@@ -47,11 +47,11 @@ class MinHeap {
  * Shortest path with Dijkstra.
  *   accessibleOnly: skip edges marked not accessible (stairs, stairwell fire
  *   doors) and pass only through accessible nodes — Accessibility Mode.
- *   includeEmergency: also use "emergency-stairs" edges (fire stairwells).
+ *   includeEmergency: also use emergency_stairs edges (fire stairwells).
  *   Off by default: fire stairs are for evacuation, not everyday routes.
  * Returns { path: [nodeId...], edges: [edge...], cost (seconds) } or null.
  */
-export const EMERGENCY_EDGE = "emergency-stairs";
+export const EMERGENCY_EDGE = "emergency_stairs";
 
 // Routes are chosen by estimated TIME (seconds), not raw distance, so the
 // fastest route can prefer the main stairs for a floor or two and the lift
