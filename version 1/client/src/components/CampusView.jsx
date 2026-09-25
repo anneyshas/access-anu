@@ -4,7 +4,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { fetchBuildings } from "../services/api";
 import Icon from "./icons";
 import { IconBadge } from "./mapIcons";
-import OutdoorNav from "./OutdoorNav.jsx";
+import OutdoorNav from "./OutdoorNav";
 import CalibratePanel from "./CalibratePanel";
 import useOutdoorNav from "../hooks/useOutdoorNav";
 import { KIND_INFO } from "../places";
@@ -151,7 +151,9 @@ export default function CampusView({ onEnterBuilding }) {
     return () => m.remove();
   }, []);
 
-  // Map clicks: set the starting point while picking, otherwise close the card.
+  // Map clicks only matter while choosing a starting point. Otherwise tapping,
+  // dragging or zooming the map leaves the open card and all fields as they are
+  // (close a card with its X).
   const pickingRef = useRef(picking);
   useEffect(() => {
     pickingRef.current = picking;
@@ -164,9 +166,7 @@ export default function CampusView({ onEnterBuilding }) {
         setOrigin({ lngLat: [e.lngLat.lng, e.lngLat.lat], label: "Chosen point on map", accuracy: 5 });
         setOriginStatus("ok");
         setPicking(false);
-        return;
       }
-      setSelected(null);
     };
     map.on("click", onClick);
     return () => map.off("click", onClick);
@@ -282,11 +282,12 @@ export default function CampusView({ onEnterBuilding }) {
 
   // ---- search -------------------------------------------------------------------------
   const pick = (item) => {
+    // Close the phone keyboard. Otherwise it stays open and hides the place card
+    // at the bottom, and tapping the map to close it also closes the card.
+    document.activeElement?.blur();
     setQuery("");
     setFocused(false);
     setSelected(item);
-    const b = item.building;
-    map?.flyTo({ center: [b.center.lng, b.center.lat], zoom: 17.5, pitch: 50, duration: 900 });
   };
 
   const calBuilding = CALIBRATE && map ? liveBuildings.find((b) => b.georeference) : null;
@@ -348,7 +349,7 @@ export default function CampusView({ onEnterBuilding }) {
 
 function SearchBox({ query, setQuery, focused, setFocused, results, onPick }) {
   return (
-    <div className="absolute top-3 right-3 left-3 z-10 max-w-[400px] sm:top-4 sm:left-4">
+    <div className="absolute top-[max(0.75rem,env(safe-area-inset-top))] right-3 left-3 z-10 w-auto max-w-[400px] sm:top-4 sm:left-4">
       <div className="flex h-12 items-center gap-2 rounded-full bg-white pr-2 pl-4 shadow-map">
         <span className="text-[15px] font-bold tracking-tight text-map-blue">AccessANU</span>
         <span className="h-6 w-px bg-map-line" />
@@ -366,7 +367,7 @@ function SearchBox({ query, setQuery, focused, setFocused, results, onPick }) {
         </span>
       </div>
       {focused && (
-        <div className="mt-2 max-h-[60vh] overflow-auto rounded-2xl bg-white py-2 shadow-map">
+        <div className="mt-2 max-h-[calc(100dvh-6rem)] overflow-auto rounded-2xl bg-white py-2 shadow-map">
           {results.length === 0 ? (
             <div className="px-4 py-3 text-sm text-map-muted">Nothing matches “{query}”.</div>
           ) : (
@@ -402,7 +403,7 @@ function SelectionCard({ item, onClose, onDirections, onIndoor }) {
   const isPlace = item.type === "place";
   const info = isPlace ? KIND_INFO[item.kind] : null;
   return (
-    <div className="absolute inset-x-0 bottom-0 z-10 rounded-t-2xl bg-white p-4 shadow-map sm:inset-x-auto sm:bottom-6 sm:left-4 sm:w-[360px] sm:rounded-2xl">
+    <div className="mobile-sheet absolute inset-x-0 bottom-0 z-10 max-h-[calc(100dvh-1rem)] overflow-y-auto rounded-t-2xl bg-white p-4 shadow-map sm:inset-x-auto sm:bottom-6 sm:left-4 sm:w-[360px] sm:rounded-2xl">
       <div className="flex items-start gap-3">
         {isPlace ? (
           <IconBadge name={info.icon} color={info.badge} size={40} />
@@ -434,7 +435,7 @@ function SelectionCard({ item, onClose, onDirections, onIndoor }) {
           </span>
         )}
       </div>
-      <div className="mt-4 flex gap-2">
+      <div className="mt-4 flex gap-2 [&>button]:min-w-0 [&>button]:flex-1 [&>button]:justify-center">
         {isPlace && (
           <button onClick={() => onDirections(item)} className="flex h-9 items-center gap-2 rounded-full bg-map-blue px-4 text-[14px] font-medium text-white hover:bg-[#1765cc]">
             <Icon name="directions" className="size-[18px]" /> Directions

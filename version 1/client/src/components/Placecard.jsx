@@ -11,7 +11,7 @@ export default function PlaceCard({ place, buildingName, onClose, onDirections }
   const info = KIND_INFO[place.kind];
 
   return (
-    <div className="absolute inset-x-0 bottom-0 z-30 rounded-t-2xl bg-white p-4 shadow-map sm:inset-x-auto sm:bottom-6 sm:left-4 sm:w-[360px] sm:rounded-2xl">
+    <div className="mobile-sheet absolute inset-x-0 bottom-0 z-30 max-h-[calc(100dvh-1rem)] overflow-y-auto rounded-t-2xl bg-white p-4 shadow-map sm:inset-x-auto sm:bottom-6 sm:left-4 sm:w-[360px] sm:rounded-2xl">
       <div className="flex items-start gap-3">
         <IconBadge name={info.icon} color={info.badge} size={40} />
         <div className="min-w-0 flex-1">
@@ -44,7 +44,7 @@ export default function PlaceCard({ place, buildingName, onClose, onDirections }
         </span>
       </div>
 
-      <div className="mt-4 flex gap-2">
+      <div className="mt-4 flex gap-2 [&>button]:min-w-0 [&>button]:flex-1 [&>button]:justify-center">
         <button
           onClick={() => onDirections(place)}
           className="flex h-9 items-center gap-2 rounded-full bg-map-blue px-4 text-[14px] font-medium text-white hover:bg-[#1765cc]"

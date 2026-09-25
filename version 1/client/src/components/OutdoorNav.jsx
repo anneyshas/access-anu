@@ -43,7 +43,7 @@ function Preview({ dest, origin, originStatus, onUseMyLocation, onPickOnMap, pic
   const { best, planning, error } = nav;
   const ready = best && !best.none;
   return (
-    <div className="absolute top-0 left-0 z-20 w-full bg-white shadow-map sm:top-4 sm:left-4 sm:w-[400px] sm:rounded-2xl">
+    <div className="absolute top-[max(env(safe-area-inset-top),0.5rem)] left-0 z-20 max-h-[calc(100dvh-1rem)] w-full max-w-full overflow-y-auto bg-white shadow-map sm:top-4 sm:left-4 sm:max-h-[calc(100%-24px)] sm:w-[400px] sm:rounded-2xl">
       <div className="flex items-center gap-2 px-2 pt-2">
         <button onClick={onClose} className="grid size-10 place-items-center rounded-full text-map-ink-2 hover:bg-map-hover" aria-label="Close directions">
           <Icon name="back" />
@@ -125,7 +125,7 @@ function Preview({ dest, origin, originStatus, onUseMyLocation, onPickOnMap, pic
               Walk to the <b className="font-medium">{best.entrance.name}</b>, then {indoorSummary(best.indoorRoute)}
             </p>
             <p className="mt-1 text-[12px] text-map-muted">Outdoor paths come from Mapbox and may include steps or kerbs.</p>
-            <div className="mt-3 flex gap-2">
+            <div className="mt-3 flex gap-2 [&>button]:min-w-0 [&>button]:flex-1 [&>button]:justify-center">
               <button onClick={() => nav.start("gps")} className="flex h-10 items-center gap-2 rounded-full bg-map-blue px-5 text-[14px] font-medium text-white hover:bg-[#1765cc]">
                 <Icon name="navigation" className="size-[18px]" /> Start
               </button>
@@ -152,7 +152,7 @@ function Navigating({ dest, nav, following, onRecenter, onEnd }) {
   const next = progress?.next;
   return (
     <>
-      <div className="absolute top-0 left-0 z-20 w-full p-2 sm:top-4 sm:left-4 sm:w-[400px] sm:p-0">
+      <div className="absolute top-[max(env(safe-area-inset-top),0.5rem)] left-0 z-20 w-full max-w-full p-2 sm:top-4 sm:left-4 sm:w-[400px] sm:p-0">
         <div className="flex items-center gap-3 rounded-2xl bg-[#0b8043] px-4 py-3 text-white shadow-map">
           <Icon name={turnIcon(next)} className="size-9 shrink-0" />
           <div className="min-w-0">
@@ -173,7 +173,7 @@ function Navigating({ dest, nav, following, onRecenter, onEnd }) {
         </button>
       )}
 
-      <div className="absolute inset-x-0 bottom-0 z-20 rounded-t-2xl bg-white px-4 py-3 shadow-map sm:inset-x-auto sm:bottom-6 sm:left-4 sm:w-[400px] sm:rounded-2xl">
+      <div className="mobile-sheet absolute inset-x-0 bottom-0 z-20 max-h-[calc(100dvh-1rem)] overflow-y-auto rounded-t-2xl bg-white px-4 py-3 shadow-map sm:inset-x-auto sm:bottom-6 sm:left-4 sm:w-[400px] sm:rounded-2xl">
         <div className="flex items-center gap-3">
           <div className="min-w-0 flex-1">
             <div className="text-[20px] text-map-green">
@@ -210,7 +210,7 @@ function Arrived({ dest, nav, onEnter, onEnd }) {
   }, [count, paused, onEnter]);
 
   return (
-    <div className="absolute inset-x-0 bottom-0 z-20 rounded-t-2xl bg-white p-4 shadow-map sm:inset-x-auto sm:bottom-6 sm:left-4 sm:w-[400px] sm:rounded-2xl">
+    <div className="mobile-sheet absolute inset-x-0 bottom-0 z-20 max-h-[calc(100dvh-1rem)] overflow-y-auto rounded-t-2xl bg-white p-4 shadow-map sm:inset-x-auto sm:bottom-6 sm:left-4 sm:w-[400px] sm:rounded-2xl">
       <div className="flex items-start gap-3">
         <span className="grid size-10 shrink-0 place-items-center rounded-full bg-[#e6f4ea] text-map-green">
           <Icon name="flag" />

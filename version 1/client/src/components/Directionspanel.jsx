@@ -136,7 +136,7 @@ export default function DirectionsPanel({
 
   return (
     <>
-      <div className="absolute top-3 right-3 left-3 z-30 flex max-h-[calc(100%-24px)] max-w-[400px] flex-col rounded-2xl bg-white shadow-map sm:top-4 sm:left-4">
+      <div className="absolute top-[max(0.5rem,env(safe-area-inset-top))] right-2 left-2 z-30 flex max-h-[calc(100dvh-1rem)] w-auto max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-map sm:top-4 sm:left-4 sm:max-h-[calc(100%-24px)] sm:rounded-2xl">
         <div className="flex items-start gap-1 p-3 pb-2">
           <button onClick={onClose} className="grid size-9 shrink-0 place-items-center rounded-full text-map-muted hover:bg-map-hover" aria-label="Close directions">
             <Icon name="back" />
@@ -168,7 +168,7 @@ export default function DirectionsPanel({
           </button>
         </div>
 
-        <div className="flex gap-1 border-b border-map-line px-3 pb-3">
+        <div className="flex gap-1 border-b border-map-line px-2 pb-3 sm:px-3">
           <Mode active={stepFree} icon="accessible" label="Step-free" route={routes.stepFree} loading={loading} onClick={() => onMode(true)} />
           <Mode active={!stepFree} icon="walk" label="Fastest" route={routes.fastest} loading={loading} onClick={() => onMode(false)} />
         </div>

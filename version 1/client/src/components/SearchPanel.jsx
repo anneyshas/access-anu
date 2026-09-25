@@ -1,105 +1,209 @@
 import { useMemo, useState } from "react";
 import Icon from "./icons";
 import { IconBadge } from "./mapIcons";
-import { CATEGORIES, KIND_INFO, searchPlaces } from "../places";
+import { KIND_INFO, minutes, searchPlaces } from "../places";
 
-/**
- * Google-Maps-style search card: back button, search box, category chips,
- * and a results list spanning every floor of the building.
- */
-export default function SearchPanel({ buildingName, places, category, onCategory, onPick, onBack }) {
-  const [query, setQuery] = useState("");
-  const [focused, setFocused] = useState(false);
+const STEP_ICON = { start: "origin", walk: "walk", lift: "lift", stairs: "stairs", arrive: "flag" };
 
-  const results = useMemo(() => searchPlaces(places, query, category), [places, query, category]);
-  const open = (focused && query.trim().length > 0) || Boolean(category);
-
-  const pick = (p) => {
-    onPick(p);
-    setQuery("");
-    setFocused(false);
-    onCategory(null);
-  };
-
+function Mode({ active, icon, label, route, loading, onClick }) {
+  const stepFree = icon === "accessible";
+  let detail = "…";
+  if (!loading) detail = route?.error ? "No route" : route ? `${minutes(route.distance, stepFree)} min` : "—";
   return (
-    <div className="pointer-events-none absolute top-3 left-3 right-3 z-30 flex max-w-[400px] flex-col gap-2 sm:top-4 sm:left-4">
-      <div className="pointer-events-auto flex h-12 items-center gap-1 rounded-full bg-white pr-2 pl-1 shadow-map">
-        <button
-          onClick={onBack}
-          className="grid size-10 place-items-center rounded-full text-map-muted hover:bg-map-hover"
-          aria-label="Back to campus map"
-          title="Back to campus map"
-        >
-          <Icon name="back" />
-        </button>
+    <button
+      onClick={onClick}
+      className={`flex h-9 flex-1 items-center justify-center gap-1.5 rounded-full px-3 text-[13px] font-medium transition-colors ${
+        active ? "bg-map-blue-soft text-map-blue" : "text-map-ink-2 hover:bg-map-hover"
+      }`}
+      title={label}
+    >
+      <Icon name={icon} className="size-[18px]" />
+      <span>{label}</span>
+      <span className={active ? "" : "text-map-muted"}>· {detail}</span>
+    </button>
+  );
+}
+
+// "From" / "To" field: shows the chosen place, or a search box to pick one.
+function PlaceField({ icon, iconClass, value, placeholder, places, editing, onEdit, onPick }) {
+  const [query, setQuery] = useState("");
+  const results = useMemo(() => (query ? searchPlaces(places, query).slice(0, 8) : []), [places, query]);
+  return (
+    <div className="relative flex items-center gap-2">
+      <span className={`grid size-6 shrink-0 place-items-center ${iconClass}`}>
+        <Icon name={icon} className="size-4" />
+      </span>
+      {editing ? (
         <input
+          autoFocus
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setTimeout(() => setFocused(false), 150)}
-          placeholder={`Search ${buildingName}`}
-          className="h-full min-w-0 flex-1 bg-transparent text-[15px] text-map-ink outline-none placeholder:text-map-muted"
+          onBlur={() => setTimeout(() => onEdit(false), 150)}
+          placeholder={placeholder}
+          className="h-10 min-w-0 flex-1 rounded-lg border border-map-blue bg-white px-3 text-[14px] outline-none"
         />
-        {query ? (
-          <button
-            onClick={() => setQuery("")}
-            className="grid size-10 place-items-center rounded-full text-map-muted hover:bg-map-hover"
-            aria-label="Clear search"
-          >
-            <Icon name="close" />
-          </button>
-        ) : (
-          <span className="grid size-10 place-items-center text-map-blue">
-            <Icon name="search" />
-          </span>
-        )}
-      </div>
-
-      <div className="pointer-events-auto -mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
-        {CATEGORIES.map((c) => {
-          const active = category === c.id;
-          return (
-            <button
-              key={c.id}
-              onClick={() => onCategory(active ? null : c.id)}
-              className={`flex h-8 shrink-0 items-center gap-1.5 rounded-full px-3 text-[13px] font-medium shadow-map transition-colors ${
-                active ? "bg-map-blue-soft text-map-blue" : "bg-white text-map-ink-2 hover:bg-map-hover"
-              }`}
-            >
-              <IconBadge name={KIND_INFO[c.kinds[0]].icon} color={KIND_INFO[c.kinds[0]].badge} size={18} />
-              {c.label}
-            </button>
-          );
-        })}
-      </div>
-
-      {open && (
-        <div className="pointer-events-auto max-h-[55vh] overflow-y-auto rounded-2xl bg-white py-2 shadow-map">
-          {results.length === 0 ? (
-            <div className="px-4 py-3 text-sm text-map-muted">No places match “{query}”.</div>
+      ) : (
+        <button
+          onClick={() => onEdit(true)}
+          className="h-10 min-w-0 flex-1 truncate rounded-lg border border-map-line px-3 text-left text-[14px] hover:bg-map-hover"
+        >
+          {value ? (
+            <>
+              {value.title} <span className="text-map-muted">· {value.floorLabel}</span>
+            </>
           ) : (
-            results.map((p) => (
-              <button
-                key={p.key}
-                onMouseDown={(e) => e.preventDefault()}
-                onClick={() => pick(p)}
-                className="flex w-full items-center gap-3 px-4 py-2.5 text-left hover:bg-map-hover"
-              >
-                <IconBadge name={KIND_INFO[p.kind].icon} color={KIND_INFO[p.kind].badge} size={30} />
-                <span className="min-w-0 flex-1">
-                  <span className="block truncate text-[14px] font-medium text-map-ink">{p.title}</span>
-                  <span className="block truncate text-[12px] text-map-muted">{p.subtitle}</span>
-                </span>
-                {p.stepFree && (
-                  <span className="text-map-muted" title="Step-free access">
-                    <Icon name="accessible" className="size-4" />
-                  </span>
-                )}
-              </button>
-            ))
+            <span className="text-map-muted">{placeholder}</span>
           )}
+        </button>
+      )}
+      {editing && results.length > 0 && (
+        <div className="absolute top-11 right-0 left-8 z-10 max-h-64 overflow-y-auto rounded-xl bg-white py-1 shadow-map">
+          {results.map((p) => (
+            <button
+              key={p.key}
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => {
+                document.activeElement?.blur(); // close the phone keyboard
+                onPick(p);
+                setQuery("");
+                onEdit(false);
+              }}
+              className="flex w-full items-center gap-2.5 px-3 py-2 text-left hover:bg-map-hover"
+            >
+              <IconBadge name={KIND_INFO[p.kind].icon} color={KIND_INFO[p.kind].badge} size={24} />
+              <span className="min-w-0">
+                <span className="block truncate text-[13px] font-medium">{p.title}</span>
+                <span className="block truncate text-[11px] text-map-muted">{p.subtitle}</span>
+              </span>
+            </button>
+          ))}
         </div>
       )}
     </div>
+  );
+}
+
+/**
+ * Google-Maps-style directions: From/To, Step-free vs Fastest, and the
+ * turn-by-turn steps. Clicking a step shows that floor.
+ */
+export default function DirectionsPanel({
+  from,
+  to,
+  places,
+  stepFree,
+  routes = {},
+  loading,
+  picking,
+  onPicking,
+  onFrom,
+  onTo,
+  onSwap,
+  onMode,
+  onClose,
+  onStep,
+  activeFloor,
+}) {
+  const route = stepFree ? routes.stepFree : routes.fastest;
+  const [open, setOpen] = useState(false); // steps list on phones
+
+  const steps = route && !route.error && (
+    <ol className="space-y-0.5">
+      {route.steps.map((s, i) => {
+        const here = s.floor === activeFloor;
+        return (
+          <li key={i}>
+            <button
+              onClick={() => onStep(s)}
+              className={`flex w-full items-start gap-3 rounded-lg px-2 py-2 text-left hover:bg-map-hover ${here ? "" : "opacity-70"}`}
+            >
+              <span
+                className={`mt-0.5 grid size-7 shrink-0 place-items-center rounded-full ${
+                  s.kind === "arrive" ? "bg-map-red text-white" : s.kind === "lift" || s.kind === "stairs" ? "bg-map-blue text-white" : "bg-map-hover text-map-ink-2"
+                }`}
+              >
+                <Icon name={STEP_ICON[s.kind]} className="size-4" />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-[14px] text-map-ink">{s.text}</span>
+                <span className="block text-[12px] text-map-muted">Level {s.floor}</span>
+              </span>
+            </button>
+          </li>
+        );
+      })}
+    </ol>
+  );
+
+  return (
+    <>
+      <div className="absolute top-[max(0.5rem,env(safe-area-inset-top))] right-2 left-2 z-30 flex max-h-[calc(100dvh-1rem)] w-auto max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-map sm:top-4 sm:left-4 sm:max-h-[calc(100%-24px)] sm:rounded-2xl">
+        <div className="flex items-start gap-1 p-3 pb-2">
+          <button onClick={onClose} className="grid size-9 shrink-0 place-items-center rounded-full text-map-muted hover:bg-map-hover" aria-label="Close directions">
+            <Icon name="back" />
+          </button>
+          <div className="min-w-0 flex-1 space-y-2">
+            <PlaceField
+              icon="origin"
+              iconClass="text-map-muted"
+              value={from}
+              placeholder="Choose starting point, or tap the map"
+              places={places}
+              editing={picking === "from"}
+              onEdit={(on) => onPicking(on ? "from" : null)}
+              onPick={onFrom}
+            />
+            <PlaceField
+              icon="place"
+              iconClass="text-map-red"
+              value={to}
+              placeholder="Choose destination"
+              places={places}
+              editing={picking === "to"}
+              onEdit={(on) => onPicking(on ? "to" : null)}
+              onPick={onTo}
+            />
+          </div>
+          <button onClick={onSwap} className="mt-6 grid size-9 shrink-0 place-items-center rounded-full text-map-muted hover:bg-map-hover" aria-label="Swap start and destination" title="Swap">
+            <Icon name="swap" />
+          </button>
+        </div>
+
+        <div className="flex gap-1 border-b border-map-line px-3 pb-3">
+          <Mode active={stepFree} icon="accessible" label="Step-free" route={routes.stepFree} loading={loading} onClick={() => onMode(true)} />
+          <Mode active={!stepFree} icon="walk" label="Fastest" route={routes.fastest} loading={loading} onClick={() => onMode(false)} />
+        </div>
+
+        <div className="min-h-0 flex-1 overflow-y-auto px-2 py-2">
+          {loading && <p className="px-2 py-2 text-[13px] text-map-muted">Finding a route…</p>}
+          {!loading && !from && <p className="px-2 py-2 text-[13px] text-map-muted">Choose a starting point — search above, or tap a room on the map.</p>}
+          {!loading && route?.error && (
+            <p className="px-2 py-2 text-[13px] text-map-red">
+              {route.error}.{stepFree && " Try Fastest, which can use stairs."}
+            </p>
+          )}
+          {!loading && route && !route.error && (
+            <>
+              <div className="flex items-baseline gap-2 px-2 pb-2">
+                <span className="text-[20px] text-map-green">{minutes(route.distance, stepFree)} min</span>
+                <span className="text-[13px] text-map-muted">
+                  ({route.distance} m{route.floors.length > 1 ? ` · ${route.floors.length} floors` : ""})
+                </span>
+                {stepFree && (
+                  <span className="ml-auto flex items-center gap-1 text-[12px] font-medium text-map-green">
+                    <Icon name="accessible" className="size-4" /> No stairs
+                  </span>
+                )}
+              </div>
+              <div className="hidden sm:block">{steps}</div>
+              <button onClick={() => setOpen((o) => !o)} className="mx-2 mb-1 text-[13px] font-medium text-map-blue sm:hidden">
+                {open ? "Hide steps" : `Show ${route.steps.length} steps`}
+              </button>
+              {open && <div className="sm:hidden">{steps}</div>}
+            </>
+          )}
+        </div>
+      </div>
+    </>
   );
 }

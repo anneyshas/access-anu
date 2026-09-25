@@ -9,7 +9,7 @@ function App() {
   const [indoor, setIndoor] = useState(null); // { building, intent } | null
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden">
+    <div className="relative h-[100dvh] w-full max-w-full overflow-hidden">
       {indoor ? (
         <BuildingView building={indoor.building} intent={indoor.intent} onBack={() => setIndoor(null)} />
       ) : (

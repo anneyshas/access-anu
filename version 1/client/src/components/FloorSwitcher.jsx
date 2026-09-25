@@ -4,7 +4,7 @@
 // buttons (used while the directions panel covers the top-left).
 export default function FloorSwitcher({ floors, activeFloor, onSelectFloor, routeFloors = [], placement = "left" }) {
   const ordered = [...floors].sort((a, b) => b.number - a.number);
-  const where = placement === "right" ? "right-3 bottom-44 sm:right-4" : "top-[124px] left-3 sm:left-4";
+  const where = placement === "right" ? "right-2 bottom-36 sm:right-4 sm:bottom-44" : "top-[max(7rem,calc(env(safe-area-inset-top)+6rem))] left-3 sm:left-4 sm:top-[124px]";
   return (
     <div
       role="group"

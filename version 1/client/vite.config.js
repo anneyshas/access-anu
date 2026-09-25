@@ -19,6 +19,7 @@ export default defineConfig(async ({ mode }) => {
     plugins,
     server: {
       proxy: { '/api': env.API_PROXY_TARGET || 'http://localhost:5000' },
+      allowedHosts: true
     },
   }
 })

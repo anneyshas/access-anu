@@ -2,8 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 import FloorSwitcher from "./FloorSwitcher";
 import FloorMap from "./FloorMap";
 import SearchPanel from "./SearchPanel";
-import PlaceCard from "./Placecard";
-import DirectionsPanel from "./Directionspanel";
+import PlaceCard from "./PlaceCard";
+import DirectionsPanel from "./DirectionsPanel";
 import { fetchGraph, fetchRoute } from "../services/api";
 import { buildPlaces, CATEGORIES, defaultStart } from "../places";
 
@@ -159,7 +159,9 @@ export default function BuildingView({ building, onBack, intent }) {
       setPicking(null);
       return;
     }
-    setSelected(spaceId ? { floor: activeFloor, spaceId } : null);
+    // Tapping empty map keeps the open card (close it with its X);
+    // tapping another place switches to that place.
+    if (spaceId) setSelected({ floor: activeFloor, spaceId });
   };
 
   const destinationSpace = dir?.to?.floor === activeFloor ? dir.to.spaceId : null;
